@@ -1,0 +1,195 @@
+{
+  "common": {
+    "appName": "BLACK POWER PROTECTION",
+    "home": "Home",
+    "vehicles": "Vehicles",
+    "about": "About",
+    "contact": "Contact",
+    "viewAll": "View All",
+    "learnMore": "Learn More",
+    "readMore": "Read More",
+    "backToHome": "Back to Home",
+    "loading": "Loading",
+    "error": "An error occurred",
+    "tryAgain": "Try Again",
+    "noResults": "No results found",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "submit": "Submit",
+    "reset": "Reset"
+  },
+  "nav": {
+    "menu": "Menu",
+    "openMenu": "Open Menu",
+    "closeMenu": "Close Menu",
+    "switchLanguage": "العربية",
+    "languageLabel": "Language"
+  },
+  "hero": {
+    "title": "Discover Your Perfect Luxury Car",
+    "subtitle": "An exclusive collection of the finest cars in Kuwait",
+    "cta": "Explore Collection",
+    "secondaryCta": "Contact Us"
+  },
+  "vehicles": {
+    "title": "Our Collection",
+    "subtitle": "Discover our exclusive range of luxury vehicles",
+    "filters": {
+      "make": "Make",
+      "model": "Model",
+      "year": "Year",
+      "price": "Price",
+      "fuelType": "Fuel Type",
+      "transmission": "Transmission",
+      "bodyType": "Body Type",
+      "status": "Status",
+      "allMakes": "All Makes",
+      "allModels": "All Models",
+      "anyYear": "Any Year",
+      "anyPrice": "Any Price",
+      "anyFuel": "Any Fuel Type",
+      "anyTransmission": "Any Transmission",
+      "anyBody": "Any Body Type"
+    },
+    "sortOptions": {
+      "newest": "Newest",
+      "oldest": "Oldest",
+      "priceLow": "Price: Low to High",
+      "priceHigh": "Price: High to Low",
+      "mileageLow": "Lowest Mileage"
+    },
+    "details": {
+      "year": "Year",
+      "mileage": "Mileage",
+      "fuel": "Fuel",
+      "transmission": "Transmission",
+      "engine": "Engine",
+      "color": "Color",
+      "interiorColor": "Interior Color",
+      "status": "Status",
+      "features": "Features",
+      "description": "Description",
+      "inquire": "Inquire About This Vehicle",
+      "reserved": "Reserved",
+      "sold": "Sold",
+      "available": "Available",
+      "pending": "Pending",
+      "km": "km"
+    },
+    "inquiry": {
+      "title": "Vehicle Inquiry",
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "message": "Your Message",
+      "submit": "Submit Inquiry",
+      "success": "Your inquiry has been sent successfully!",
+      "error": "An error occurred while sending your inquiry"
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "About BLACK POWER PROTECTION",
+    "description": "We offer the finest luxury cars in Kuwait with world-class standards",
+    "hero": {
+      "title": "BLACK POWER PROTECTION",
+      "subtitle": "Experts in Kuwait's Luxury Car Market"
+    },
+    "story": {
+      "title": "Our Story",
+      "paragraph1": "BLACK POWER PROTECTION was founded to be the premier destination for luxury car enthusiasts in Kuwait. We believe every client deserves the best experience when searching for their perfect vehicle.",
+      "paragraph2": "With over 10 years of experience in the luxury car market, we offer an exclusive collection of the world's finest brands with guaranteed quality and complete transparency in all our dealings."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "To be the first choice for our clients in Kuwait when searching for a luxury car that combines elegance, performance, and value."
+    },
+    "values": {
+      "title": "Our Values",
+      "quality": { "title": "Quality", "description": "Every car undergoes a 150-point inspection before listing to ensure the highest quality standards" },
+      "trust": { "title": "Trust", "description": "Complete transparency in all our dealings, with detailed information about every vehicle" },
+      "service": { "title": "Customer Service", "description": "A dedicated team ready to assist you anytime via WhatsApp or phone" },
+      "excellence": { "title": "Excellence", "description": "We always strive to deliver an exceptional experience that exceeds our clients' expectations" }
+    },
+    "stats": {
+      "years": "Years of Experience",
+      "vehicles": "Cars Sold",
+      "clients": "Happy Clients",
+      "brands": "Global Brands"
+    },
+    "cta": {
+      "title": "Ready to Find Your Perfect Car?",
+      "button": "Browse Our Collection"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're here to help",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "workingHours": "Working Hours",
+    "whatsapp": "WhatsApp",
+    "hero": {
+      "title": "Get in Touch",
+      "subtitle": "We'd love to hear from you anytime"
+    },
+    "info": {
+      "phone": { "title": "Phone", "description": "Call us directly" },
+      "email": { "title": "Email", "description": "Send us a message" },
+      "whatsapp": { "title": "WhatsApp", "description": "Message us on WhatsApp" },
+      "address": { "title": "Address", "description": "Visit us in Kuwait" },
+      "hours": { "title": "Working Hours", "description": "We're available during business hours" }
+    },
+    "form": {
+      "title": "Send Us a Message",
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "success": "Your message has been sent successfully!",
+      "error": "An error occurred while sending your message",
+      "subjects": {
+        "general": "General Inquiry",
+        "vehicle": "Vehicle Inquiry",
+        "service": "Service Inquiry",
+        "other": "Other"
+      }
+    },
+    "map": {
+      "title": "Our Location",
+      "description": "Kuwait"
+    }
+  },
+  "footer": {
+    "description": "Kuwait's premier luxury car marketplace",
+    "quickLinks": "Quick Links",
+    "contactUs": "Contact Us",
+    "followUs": "Follow Us",
+    "rights": "All Rights Reserved",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use"
+  },
+  "seo": {
+    "home": {
+      "title": "BLACK POWER PROTECTION | Premium Luxury Car Marketplace in Kuwait",
+      "description": "Discover the finest luxury and premium cars in Kuwait. A distinguished car market from BLACK POWER PROTECTION."
+    },
+    "vehicles": {
+      "title": "Vehicles | BLACK POWER PROTECTION",
+      "description": "Browse our exclusive collection of luxury vehicles in Kuwait. Mercedes, BMW, Audi and more."
+    }
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for does not exist.",
+    "backHome": "Back to Home"
+  }
+}
