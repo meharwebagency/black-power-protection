@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Analytics } from "@vercel/analytics/react";
 import { Inter, Playfair_Display, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { isValidLocale, getDirection } from "@/i18n/config";
@@ -90,6 +91,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       </head>
       <body className="min-h-screen font-sans antialiased" dir={direction}>
         <ThemeProvider>{children}</ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
