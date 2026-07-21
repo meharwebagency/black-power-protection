@@ -58,6 +58,9 @@ const TRANSLATIONS = {
     colorAr: "اللون (عربي)",
     engineSize: "حجم المحرك",
     horsepower: "القوة الحصانية",
+    condition: "الحالة (جديد/مستعمل)",
+    conditionNew: "جديد",
+    conditionUsed: "مستعمل",
     vin: "رقم الهيكل (VIN)",
     descriptionEn: "الوصف (EN)",
     descriptionAr: "الوصف (AR)",
@@ -109,6 +112,9 @@ const TRANSLATIONS = {
     colorAr: "Color (Arabic)",
     engineSize: "Engine Size",
     horsepower: "Horsepower",
+    condition: "Condition",
+    conditionNew: "New",
+    conditionUsed: "Used",
     vin: "VIN",
     descriptionEn: "Description (EN)",
     descriptionAr: "Description (AR)",
@@ -178,6 +184,12 @@ export function VehicleForm({ locale, initialData, mode }: VehicleFormProps) {
   const [colorAr, setColorAr] = React.useState<string>(initialData?.color_ar || "");
   const [engineSize, setEngineSize] = React.useState<string>(
     initialData?.engine_size || ""
+  );
+  const [horsepower, setHorsepower] = React.useState<string>(
+    initialData?.horsepower?.toString() || ""
+  );
+  const [condition, setCondition] = React.useState<string>(
+    initialData?.condition || "used"
   );
   const [vin, setVin] = React.useState<string>(initialData?.vin || "");
   const [descriptionEn, setDescriptionEn] = React.useState<string>(
@@ -418,6 +430,8 @@ export function VehicleForm({ locale, initialData, mode }: VehicleFormProps) {
         transmission,
         body_type: bodyType,
         engine_size: engineSize.trim() || null,
+        horsepower: horsepower ? Number(horsepower) : null,
+        condition,
         color: color.trim(),
         color_ar: colorAr.trim(),
         description: descriptionEn,
@@ -650,6 +664,19 @@ export function VehicleForm({ locale, initialData, mode }: VehicleFormProps) {
                       onChange={(e) => setPrice(e.target.value)}
                     />
                   </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-foreground">
+                      {t.condition} <span className="text-destructive">*</span>
+                    </label>
+                    <select
+                      value={condition}
+                      onChange={(e) => setCondition(e.target.value)}
+                      className="h-11 w-full rounded-xl border border-input bg-background px-3 text-sm text-foreground"
+                    >
+                      <option value="new">{t.conditionNew}</option>
+                      <option value="used">{t.conditionUsed}</option>
+                    </select>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -761,6 +788,17 @@ export function VehicleForm({ locale, initialData, mode }: VehicleFormProps) {
                       placeholder="3.0L"
                       value={engineSize}
                       onChange={(e) => setEngineSize(e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-foreground">
+                      {t.horsepower}
+                    </label>
+                    <Input
+                      type="number"
+                      placeholder="300"
+                      value={horsepower}
+                      onChange={(e) => setHorsepower(e.target.value)}
                     />
                   </div>
                   <div className="space-y-2">

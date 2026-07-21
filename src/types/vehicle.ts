@@ -2,6 +2,7 @@ export type VehicleStatus = "available" | "sold" | "reserved" | "pending";
 export type FuelType = "gasoline" | "diesel" | "electric" | "hybrid";
 export type Transmission = "automatic" | "manual";
 export type BodyType = "sedan" | "suv" | "coupe" | "convertible" | "hatchback" | "truck" | "van" | "wagon";
+export type VehicleCondition = "new" | "used";
 
 export interface VehicleImage {
   id: string;
@@ -30,6 +31,7 @@ export interface Vehicle {
   bodyTypeAr: string;
   engineSize: string;
   horsepower: number;
+  condition: VehicleCondition;
   color: string;
   colorAr: string;
   interiorColor: string;
@@ -62,6 +64,7 @@ export interface VehicleFilter {
   bodyType?: BodyType;
   color?: string;
   status?: VehicleStatus;
+  condition?: VehicleCondition;
   search?: string;
 }
 

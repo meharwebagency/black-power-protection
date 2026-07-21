@@ -1,8 +1,9 @@
 "use client";
 
 import * as React from "react";
+import { HeroSection } from "@/components/home/hero-section";
 import { SearchBarSection } from "@/components/home/search-bar-section";
-import { FeaturedVehiclesSection } from "@/components/home/featured-vehicles-section";
+import { PremiumBrandsSection } from "@/components/home/premium-brands-section";
 import { LatestArrivalsSection } from "@/components/home/latest-arrivals-section";
 import { WhyChooseUsSection } from "@/components/home/why-choose-us-section";
 import { ContactMapSection } from "@/components/home/contact-map-section";
@@ -19,15 +20,13 @@ export default function HomePage({ params }: HomePageProps) {
 
   return (
     <div className="relative">
+      <HeroSection locale={locale} />
+
       <SearchBarSection locale={locale} />
 
+      <PremiumBrandsSection locale={locale} />
+
       <LatestArrivalsSection locale={locale} />
-
-      <div className="relative">
-        <div className="mx-auto h-px max-w-xs bg-gradient-to-r from-transparent via-gold-400/25 to-transparent" />
-      </div>
-
-      <FeaturedVehiclesSection locale={locale} />
 
       <WhyChooseUsSection locale={locale} />
 

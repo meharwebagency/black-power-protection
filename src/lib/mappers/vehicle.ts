@@ -5,6 +5,7 @@ import type {
   Transmission,
   BodyType,
   VehicleStatus,
+  VehicleCondition,
 } from "@/types/vehicle";
 
 // Raw vehicle row as returned by Supabase (snake_case) with joined images.
@@ -35,6 +36,7 @@ interface RawVehicle {
   body_type_ar: string;
   engine_size: string | null;
   horsepower: number | null;
+  condition: string;
   color: string;
   color_ar: string;
   interior_color: string | null;
@@ -89,6 +91,7 @@ export function mapVehicleRow(row: RawVehicle): Vehicle {
     bodyTypeAr: row.body_type_ar,
     engineSize: row.engine_size ?? "",
     horsepower: row.horsepower ?? 0,
+    condition: (row.condition as VehicleCondition) || "used",
     color: row.color,
     colorAr: row.color_ar,
     interiorColor: row.interior_color ?? "",

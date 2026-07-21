@@ -50,6 +50,7 @@ export function VehicleInventory({ locale }: VehicleInventoryProps) {
     fuelType: (searchParams.get("fuelType") as VehicleFilter["fuelType"]) || undefined,
     transmission: (searchParams.get("transmission") as VehicleFilter["transmission"]) || undefined,
     status: (searchParams.get("status") as VehicleFilter["status"]) || undefined,
+    condition: (searchParams.get("condition") as VehicleFilter["condition"]) || undefined,
     color: searchParams.get("color") || undefined,
     yearFrom: searchParams.get("yearFrom") ? Number(searchParams.get("yearFrom")) : undefined,
     yearTo: searchParams.get("yearTo") ? Number(searchParams.get("yearTo")) : undefined,
@@ -117,6 +118,7 @@ export function VehicleInventory({ locale }: VehicleInventoryProps) {
     if (filters.fuelType) params.set("fuelType", filters.fuelType);
     if (filters.transmission) params.set("transmission", filters.transmission);
     if (filters.status) params.set("status", filters.status);
+    if (filters.condition) params.set("condition", filters.condition);
     if (filters.color) params.set("color", filters.color);
     if (filters.yearFrom) params.set("yearFrom", String(filters.yearFrom));
     if (filters.yearTo) params.set("yearTo", String(filters.yearTo));
@@ -148,6 +150,7 @@ export function VehicleInventory({ locale }: VehicleInventoryProps) {
     if (filters.fuelType) result = result.filter((v) => v.fuelType === filters.fuelType);
     if (filters.transmission) result = result.filter((v) => v.transmission === filters.transmission);
     if (filters.status) result = result.filter((v) => v.status === filters.status);
+    if (filters.condition) result = result.filter((v) => v.condition === filters.condition);
     if (filters.color) result = result.filter((v) => v.color === filters.color);
     if (filters.yearFrom) result = result.filter((v) => v.year >= filters.yearFrom!);
     if (filters.yearTo) result = result.filter((v) => v.year <= filters.yearTo!);
@@ -207,6 +210,7 @@ export function VehicleInventory({ locale }: VehicleInventoryProps) {
           case "fuelType":
           case "transmission":
           case "status":
+          case "condition":
           case "color":
             return String(value);
           case "yearFrom":

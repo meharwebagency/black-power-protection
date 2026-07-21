@@ -1,6 +1,5 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { Header } from "./header";
 import { Footer } from "./footer";
 import { ToastProvider } from "@/components/ui/toast";
@@ -43,9 +42,6 @@ interface MainLayoutProps {
 }
 
 export function MainLayout({ locale, children, dictionary }: MainLayoutProps) {
-  const { theme, setTheme } = useTheme();
-  const isDark = theme === "dark";
-
   return (
     <ToastProvider>
       <div className="flex min-h-screen flex-col">
@@ -60,8 +56,6 @@ export function MainLayout({ locale, children, dictionary }: MainLayoutProps) {
         <Header
           locale={locale}
           dictionary={dictionary}
-          onToggleTheme={() => setTheme(isDark ? "light" : "dark")}
-          isDark={isDark}
         />
         <main id="main-content" className="flex-1 pt-18 md:pt-20 scroll-mt-20">{children}</main>
         <Footer locale={locale} dictionary={dictionary} />

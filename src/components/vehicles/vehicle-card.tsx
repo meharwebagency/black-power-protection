@@ -85,24 +85,36 @@ export function VehicleCard({ vehicle, locale, className }: VehicleCardProps) {
           />
         </div>
 
-        {/* Status — quiet letterspaced chip, non-default states only */}
+        {/* Status — quiet letterspaced chip, top-left, non-default states only */}
         {statusLabel && (
           <span
             className={cn(
               "absolute start-4 top-4 bg-background/85 px-2.5 py-1 backdrop-blur-sm",
-              "text-[0.625rem] font-medium text-foreground",
+              "text-2xs font-medium text-foreground",
               !isAr && "uppercase tracking-[0.14em]"
             )}
           >
             {statusLabel}
           </span>
         )}
+        {/* Condition badge — premium pill, top-right */}
+        <span
+          className={cn(
+            "absolute end-4 top-4 rounded-full px-2.5 py-0.5",
+            "text-2xs font-semibold leading-5 backdrop-blur-sm",
+            vehicle.condition === "new"
+              ? "bg-[#16A34A] text-white"
+              : "bg-[#D4AF37] text-black"
+          )}
+        >
+          {vehicle.condition === "new" ? "NEW" : "USED"}
+        </span>
       </div>
 
       {/* Content */}
       <div className="p-5">
         {/* Name — the card's single link, stretched over the whole card */}
-        <h3 className="font-display text-base font-medium leading-snug text-foreground">
+        <h3 className="font-display text-base font-semibold leading-snug text-foreground">
           <Link
             href={`/${locale}/vehicles/${vehicle.slug}`}
             className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm after:absolute after:inset-0 after:content-['']"

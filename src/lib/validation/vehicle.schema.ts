@@ -1,6 +1,7 @@
 import { z } from "zod";
 import {
   vehicleStatusEnum,
+  vehicleConditionEnum,
   fuelTypeEnum,
   transmissionEnum,
   bodyTypeEnum,
@@ -33,6 +34,7 @@ export const createVehicleSchema = z.object({
     .max(2000)
     .optional()
     .nullable(),
+  condition: vehicleConditionEnum.default("used"),
   color: z.string().min(1, "Color is required").max(50),
   color_ar: z.string().min(1, "Arabic color is required").max(50),
   interior_color: z.string().max(50).optional().nullable(),
@@ -69,6 +71,7 @@ export const vehicleFilterSchema = z.object({
   fuel_type: fuelTypeEnum.optional(),
   transmission: transmissionEnum.optional(),
   body_type: bodyTypeEnum.optional(),
+  condition: vehicleConditionEnum.optional(),
   status: vehicleStatusEnum.optional(),
   search: z.string().max(200).optional(),
   sort: z

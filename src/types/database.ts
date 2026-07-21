@@ -27,6 +27,7 @@ export interface Database {
           body_type_ar: string;
           engine_size: string | null;
           horsepower: number | null;
+          condition: string;
           color: string;
           color_ar: string;
           interior_color: string | null;
@@ -71,6 +72,7 @@ export interface Database {
           body_type_ar?: string;
           engine_size?: string | null;
           horsepower?: number | null;
+          condition?: string;
           color?: string;
           color_ar?: string;
           interior_color?: string | null;
@@ -115,6 +117,7 @@ export interface Database {
           body_type_ar?: string;
           engine_size?: string | null;
           horsepower?: number | null;
+          condition?: string;
           color?: string;
           color_ar?: string;
           interior_color?: string | null;

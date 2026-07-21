@@ -20,6 +20,7 @@ function parseFilters(searchParams: URLSearchParams): VehicleFilter {
     transmission: (searchParams.get("transmission") as VehicleFilter["transmission"]) || undefined,
     bodyType: (searchParams.get("bodyType") as VehicleFilter["bodyType"]) || undefined,
     status: (searchParams.get("status") as VehicleFilter["status"]) || undefined,
+    condition: (searchParams.get("condition") as VehicleFilter["condition"]) || undefined,
     search: searchParams.get("search") || undefined,
   };
 }
@@ -71,6 +72,7 @@ export async function getVehicles({ searchParams }: VehiclesRequestParams) {
   if (filters.fuelType) query = query.eq("fuel_type", filters.fuelType);
   if (filters.transmission) query = query.eq("transmission", filters.transmission);
   if (filters.bodyType) query = query.eq("body_type", filters.bodyType);
+  if (filters.condition) query = query.eq("condition", filters.condition);
   if (filters.search) {
     query = query.or(
       `make.ilike.%${filters.search}%,model.ilike.%${filters.search}%,make_ar.ilike.%${filters.search}%,model_ar.ilike.%${filters.search}%`

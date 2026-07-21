@@ -30,6 +30,7 @@ export function MobileFilterDrawer({
     filters.fuelType,
     filters.transmission,
     filters.status,
+    filters.condition,
     filters.color,
     filters.yearFrom,
     filters.yearTo,

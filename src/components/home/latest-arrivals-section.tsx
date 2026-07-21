@@ -71,7 +71,7 @@ export function LatestArrivalsSection({ locale }: LatestArrivalsSectionProps) {
   if (vehicles.length === 0) return null;
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="pt-3 pb-10 md:pt-4 md:pb-16">
       <Container>
         <motion.div
           initial="hidden"

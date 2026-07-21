@@ -8,6 +8,8 @@ export const vehicleStatusEnum = z.enum([
   "draft",
 ]);
 
+export const vehicleConditionEnum = z.enum(["new", "used"]);
+
 export const fuelTypeEnum = z.enum([
   "gasoline",
   "diesel",

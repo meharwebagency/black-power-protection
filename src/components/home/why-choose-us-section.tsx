@@ -47,7 +47,7 @@ export function WhyChooseUsSection({ locale }: WhyChooseUsSectionProps) {
   };
 
   return (
-    <section className="py-10 md:py-14">
+    <section className="py-7 md:py-10">
       <Container>
         <motion.div
           initial="hidden"

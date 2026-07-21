@@ -127,18 +127,30 @@ export function VehicleCardListing({ vehicle, locale, onQuickView }: VehicleCard
             />
           </div>
 
-          {/* Status — quiet letterspaced chip, non-default states only */}
-          {statusLabel && (
-            <span
-              className={cn(
-                "absolute start-4 top-4 bg-background/85 px-2.5 py-1 backdrop-blur-sm",
-                "text-[0.625rem] font-medium text-foreground",
-                !isAr && "uppercase tracking-[0.14em]"
-              )}
-            >
-              {statusLabel}
-            </span>
+        {/* Status — quiet letterspaced chip, top-left, non-default states only */}
+        {statusLabel && (
+          <span
+            className={cn(
+              "absolute start-4 top-4 bg-background/85 px-2.5 py-1 backdrop-blur-sm",
+              "text-2xs font-medium text-foreground",
+              !isAr && "uppercase tracking-[0.14em]"
+            )}
+          >
+            {statusLabel}
+          </span>
+        )}
+        {/* Condition badge — premium pill, top-right */}
+        <span
+          className={cn(
+            "absolute end-4 top-4 rounded-full px-2.5 py-0.5",
+            "text-2xs font-semibold leading-5 backdrop-blur-sm",
+            vehicle.condition === "new"
+              ? "bg-[#16A34A] text-white"
+              : "bg-[#D4AF37] text-black"
           )}
+        >
+          {vehicle.condition === "new" ? "NEW" : "USED"}
+        </span>
         </div>
       </Link>
 
@@ -173,7 +185,7 @@ export function VehicleCardListing({ vehicle, locale, onQuickView }: VehicleCard
       {/* Content */}
       <div className="p-5">
         {/* Name — the card's primary accessible link */}
-        <h3 className="font-display text-base font-medium leading-snug text-foreground">
+        <h3 className="font-display text-base font-semibold leading-snug text-foreground">
           <Link
             href={detailHref}
             className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm after:absolute after:inset-0 after:content-['']"
@@ -229,7 +241,7 @@ export function VehicleCardListing({ vehicle, locale, onQuickView }: VehicleCard
               className={cn(
                 "relative z-10 py-1 text-muted-foreground transition-all duration-300 hover:text-foreground",
                 "sm:opacity-0 sm:focus-visible:opacity-100 sm:group-hover:opacity-100",
-                isAr ? "text-xs font-medium" : "text-[0.6875rem] font-medium uppercase tracking-[0.08em]",
+                isAr ? "text-xs font-medium" : "text-label-sm font-medium uppercase",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
               )}
             >

@@ -2,190 +2,259 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { Search, ChevronDown, ArrowRight } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { Search, ChevronDown, Car } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
 import { VEHICLE_MAKES } from "@/lib/constants";
 import { easings } from "@/lib/motion";
+import type { Vehicle } from "@/types/vehicle";
 import type { Locale } from "@/types";
 
 interface SearchBarSectionProps {
   locale: Locale;
 }
 
+const GOLD = "#D4AF37";
+
+/* Max-price presets in KWD — map to the inventory's `priceTo` param */
+const PRICE_OPTIONS = [5000, 10000, 15000, 20000, 30000, 50000];
+
 export function SearchBarSection({ locale }: SearchBarSectionProps) {
   const router = useRouter();
   const prefersReducedMotion = useReducedMotion();
-  const [searchQuery, setSearchQuery] = React.useState("");
   const [selectedMake, setSelectedMake] = React.useState("");
+  const [selectedModel, setSelectedModel] = React.useState("");
+  const [maxPrice, setMaxPrice] = React.useState("");
+  const [activeTab, setActiveTab] = React.useState(0);
+  const CONDITION_TABS: (string | undefined)[] = [undefined, "new", "used"];
+
+  /* Live inventory pool — powers the Models dropdown (distinct models,
+     narrowed by the selected make) via the existing public vehicles API,
+     the same source SearchSuggestions uses. */
+  const [pool, setPool] = React.useState<Vehicle[]>([]);
+  React.useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/api/vehicles?limit=100&status=available");
+        const json = await res.json();
+        if (!cancelled && json.success) setPool(json.data as Vehicle[]);
+      } catch {
+        /* dropdown falls back to the "All Models" option only */
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const models = React.useMemo(() => {
+    const source = selectedMake ? pool.filter((v) => v.make === selectedMake) : pool;
+    const seen = new Map<string, string>();
+    for (const v of source) {
+      if (v.model && !seen.has(v.model)) seen.set(v.model, v.modelAr || v.model);
+    }
+    return [...seen.entries()]
+      .map(([value, labelAr]) => ({ value, labelAr }))
+      .sort((a, b) => a.value.localeCompare(b.value));
+  }, [pool, selectedMake]);
 
   const isAr = locale === "ar";
   const t = (ar: string, en: string) => (isAr ? ar : en);
 
+  const tabs = [
+    t("بحث السيارات", "Search Cars"),
+    t("سيارات جديدة", "New Cars"),
+    t("سيارات مستعملة", "Used Cars"),
+  ];
+
+  const handleMakeChange = (value: string) => {
+    setSelectedMake(value);
+    setSelectedModel("");
+  };
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     const params = new URLSearchParams();
-    if (searchQuery) params.set("search", searchQuery);
-    if (selectedMake) params.set("brand", selectedMake);
+    if (selectedMake) params.set("make", selectedMake);
+    if (selectedModel) params.set("model", selectedModel);
+    if (maxPrice) params.set("priceTo", maxPrice);
+    const condition = CONDITION_TABS[activeTab];
+    if (condition) params.set("condition", condition);
     router.push(`/${locale}/vehicles?${params.toString()}`);
   };
 
-  const reveal: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 16 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: prefersReducedMotion
-        ? { duration: 0 }
-        : { duration: 0.8, ease: easings.luxury },
-    },
-  };
+  const fmt = (n: number) =>
+    new Intl.NumberFormat(isAr ? "ar-KW" : "en-US").format(n);
 
-  const stage: Variants = {
-    hidden: {},
-    visible: {
-      transition: prefersReducedMotion
-        ? {}
-        : { staggerChildren: 0.12, delayChildren: 0.05 },
-    },
-  };
+  const selectedModelLabel = selectedModel
+    ? (isAr && models.find((m) => m.value === selectedModel)?.labelAr) || selectedModel
+    : "";
 
   return (
-    <section className="relative overflow-hidden border-b border-border bg-background">
-      {/* Quiet gold ambient */}
-      <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-secondary/50 to-background" />
-        <div className="absolute inset-x-0 top-[-20%] h-1/2 bg-[radial-gradient(50%_60%_at_50%_0%,rgba(229,168,44,0.10),transparent_70%)]" />
-      </div>
-
-      <Container size="xl" className="relative z-10">
-        <motion.div
-          variants={stage}
-          initial="hidden"
-          animate="visible"
-          className="mx-auto max-w-3xl py-16 text-center md:py-20"
+    <section className="relative z-20 -mt-6 bg-[#000000] pb-4 md:-mt-8 md:pb-6">
+      <Container size="xl">
+        <motion.form
+          onSubmit={handleSearch}
+          role="search"
+          aria-label={t("البحث في السيارات", "Search vehicles")}
+          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={
+            prefersReducedMotion
+              ? { duration: 0 }
+              : { duration: 0.8, ease: easings.luxury, delay: 0.2 }
+          }
+          className={cn(
+            "rounded-2xl bg-[#111111] text-white",
+            "border border-white/[0.08]",
+            "shadow-[0_24px_60px_-12px_rgba(0,0,0,0.55)]",
+            "p-5 md:p-6"
+          )}
         >
-          {/* Kicker */}
-          <motion.p variants={reveal} className="flex items-center justify-center gap-3">
-            <span aria-hidden="true" className="h-px w-8 bg-gold-400" />
-            <span
-              className={cn(
-                "text-gold-600 dark:text-gold-400",
-                isAr ? "text-sm font-medium" : "text-[0.6875rem] uppercase tracking-[0.3em]"
-              )}
-            >
-              {t("الكويت", "Kuwait")}
-            </span>
-            <span aria-hidden="true" className="h-px w-8 bg-gold-400" />
-          </motion.p>
+          {/* ── Tabs ── */}
+          <div className="flex items-center gap-2 border-b border-white/[0.08]">
+            <Car
+              aria-hidden="true"
+              strokeWidth={1.5}
+              className="me-2 hidden h-5 w-5 text-white/60 sm:block"
+            />
+            <div role="tablist" aria-label={t("نوع البحث", "Search type")} className="flex gap-1 overflow-x-auto scrollbar-hidden">
+              {tabs.map((label, i) => (
+                <button
+                  key={label}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeTab === i}
+                  onClick={() => setActiveTab(i)}
+                  className={cn(
+                    "relative whitespace-nowrap px-4 py-4 text-sm transition-colors duration-200",
+                    activeTab === i
+                      ? "font-semibold text-white"
+                      : "text-white/55 hover:text-white",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] rounded-lg"
+                  )}
+                >
+                  {label}
+                  {activeTab === i && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-x-3 -bottom-px h-0.5 rounded-full"
+                      style={{ backgroundColor: GOLD }}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
 
-          {/* Headline */}
-          <motion.h1
-            variants={reveal}
-            className={cn(
-              "mt-6 font-display text-foreground leading-[1.08]",
-              "text-3xl sm:text-4xl md:text-5xl",
-              isAr ? "font-bold" : "font-semibold tracking-[-0.02em]"
-            )}
-          >
-            {t("اعثر على سيارتك الفاخرة", "Find Your Luxury Vehicle")}
-          </motion.h1>
-
-          {/* Subline */}
-          <motion.p
-            variants={reveal}
-            className="mx-auto mt-4 max-w-md text-base leading-relaxed text-muted-foreground"
-          >
-            {t(
-              "ابحث في مجموعتنا المنتقاة من أرقى السيارات في الكويت.",
-              "Search our curated collection of Kuwait's finest automobiles."
-            )}
-          </motion.p>
-
-          {/* Search form */}
-          <motion.form
-            variants={reveal}
-            onSubmit={handleSearch}
-            role="search"
-            aria-label={t("البحث في السيارات", "Search vehicles")}
-            className="mx-auto mt-10 flex max-w-2xl flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-elevated sm:h-16 sm:flex-row sm:items-stretch"
-          >
+          {/* ── Filters row ── */}
+          <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-[1fr_1fr_1fr_auto] md:gap-4">
             {/* Make */}
-            <div className="relative flex items-center border-b border-border sm:w-52 sm:border-b-0 sm:border-e">
-              <label htmlFor="home-make" className="sr-only">
-                {t("الماركة", "Make")}
-              </label>
-              <select
-                id="home-make"
-                value={selectedMake}
-                onChange={(e) => setSelectedMake(e.target.value)}
-                className={cn(
-                  "h-14 w-full appearance-none bg-transparent pe-10 ps-4 sm:h-full",
-                  "text-sm text-foreground",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg",
-                  !selectedMake && "text-muted-foreground"
-                )}
-              >
-                <option value="">{t("جميع الماركات", "All Makes")}</option>
-                {VEHICLE_MAKES.map((make) => (
-                  <option key={make} value={make}>
-                    {make}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown
-                aria-hidden="true"
-                strokeWidth={1.75}
-                className="pointer-events-none absolute end-3 h-4 w-4 text-muted-foreground"
-              />
-            </div>
+            <FilterField
+              ariaLabel={t("الماركة", "Make")}
+              title={selectedMake || t("جميع الماركات", "All Makes")}
+              hint={t("اختر الماركة", "Select Make")}
+              value={selectedMake}
+              onChange={handleMakeChange}
+            >
+              <option value="">{t("جميع الماركات", "All Makes")}</option>
+              {VEHICLE_MAKES.map((make) => (
+                <option key={make} value={make}>
+                  {make}
+                </option>
+              ))}
+            </FilterField>
 
-            {/* Query */}
-            <div className="relative flex flex-1 items-center">
-              <label htmlFor="home-search" className="sr-only">
-                {t("ابحث عن سيارة", "Search for a car")}
-              </label>
-              <Search
-                aria-hidden="true"
-                strokeWidth={1.75}
-                className="pointer-events-none absolute start-4 h-4 w-4 text-muted-foreground"
-              />
-              <input
-                id="home-search"
-                type="search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={t("ابحث بالماركة أو الطراز…", "Search by make or model…")}
-                className={cn(
-                  "h-14 w-full bg-transparent pe-4 ps-11 sm:h-full",
-                  "text-sm text-foreground placeholder:text-muted-foreground/70",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg"
-                )}
-              />
-            </div>
+            {/* Model — distinct live-inventory models for the chosen make */}
+            <FilterField
+              ariaLabel={t("الطراز", "Model")}
+              title={selectedModelLabel || t("جميع الطرازات", "All Models")}
+              hint={t("اختر الطراز", "Select Model")}
+              value={selectedModel}
+              onChange={setSelectedModel}
+            >
+              <option value="">{t("جميع الطرازات", "All Models")}</option>
+              {models.map((m) => (
+                <option key={m.value} value={m.value}>
+                  {isAr ? m.labelAr : m.value}
+                </option>
+              ))}
+            </FilterField>
+
+            {/* Max price */}
+            <FilterField
+              ariaLabel={t("أقصى سعر", "Max Price")}
+              title={maxPrice ? t(`${fmt(Number(maxPrice))} د.ك`, `${fmt(Number(maxPrice))} KWD`) : t("أقصى سعر", "Max Price")}
+              hint={t("أي سعر", "Any Price")}
+              value={maxPrice}
+              onChange={setMaxPrice}
+            >
+              <option value="">{t("أي سعر", "Any Price")}</option>
+              {PRICE_OPTIONS.map((p) => (
+                <option key={p} value={p}>
+                  {t(`${fmt(p)} د.ك`, `${fmt(p)} KWD`)}
+                </option>
+              ))}
+            </FilterField>
 
             {/* Submit */}
             <button
               type="submit"
               className={cn(
-                "group flex h-14 items-center justify-center gap-2 sm:h-auto sm:px-8",
-                "gold-gradient text-[#1a1408]",
-                "transition-all duration-300 hover:brightness-110",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-inset",
-                isAr ? "text-sm font-semibold" : "text-[0.8125rem] font-semibold uppercase tracking-[0.08em]"
+                "inline-flex h-[72px] items-center justify-center gap-2.5 rounded-xl px-10",
+                "bg-gradient-to-r from-gold-700 to-gold-500 text-[#1a1408] font-semibold",
+                isAr ? "text-sm" : "text-body-sm uppercase tracking-[0.08em]",
+                "transition-all duration-300 hover:brightness-110 active:scale-[0.98]",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111111]"
               )}
             >
+              <Search aria-hidden="true" strokeWidth={2} className="h-4 w-4" />
               {t("بحث", "Search")}
-              <ArrowRight
-                aria-hidden="true"
-                strokeWidth={2}
-                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5"
-              />
             </button>
-          </motion.form>
-        </motion.div>
+          </div>
+        </motion.form>
       </Container>
     </section>
+  );
+}
+
+/* Reference-style filter field: bold title line over a muted hint line, with
+   an invisible native <select> overlaid so the dropdown is fully functional
+   on every platform. */
+interface FilterFieldProps {
+  ariaLabel: string;
+  title: string;
+  hint: string;
+  value: string;
+  onChange: (value: string) => void;
+  children: React.ReactNode;
+}
+
+function FilterField({ ariaLabel, title, hint, value, onChange, children }: FilterFieldProps) {
+  return (
+    <div className="relative h-[72px] rounded-xl border border-white/[0.08] bg-white/[0.04] transition-colors duration-200 focus-within:border-[#D4AF37]">
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 flex flex-col justify-center gap-1 pe-10 ps-4"
+      >
+        <span className="truncate text-body-md font-semibold text-white">{title}</span>
+        <span className="truncate text-body-sm text-white/50">{hint}</span>
+      </span>
+      <select
+        aria-label={ariaLabel}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="absolute inset-0 h-full w-full cursor-pointer appearance-none rounded-xl opacity-0 focus-visible:outline-none [&>option]:bg-[#111111] [&>option]:text-white"
+      >
+        {children}
+      </select>
+      <ChevronDown
+        aria-hidden="true"
+        strokeWidth={1.75}
+        className="pointer-events-none absolute end-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50"
+      />
+    </div>
   );
 }

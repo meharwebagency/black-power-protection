@@ -4,7 +4,7 @@ import * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   Calendar, Gauge, Fuel, Settings2, Palette, Sofa,
-  Cpu, Zap, FileText, Check, Hash,
+  Cpu, Zap, FileText, Check, Hash, Car,
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import type { Vehicle } from "@/types/vehicle";
@@ -24,10 +24,11 @@ export function VehicleSpecs({ vehicle, locale }: VehicleSpecsProps) {
   const specs = [
     { icon: Calendar, label: t("السنة", "Year"), value: String(vehicle.year) },
     { icon: Gauge, label: t("المسافة", "Mileage"), value: `${new Intl.NumberFormat(locale === "ar" ? "ar-KW" : "en-US").format(vehicle.mileage)} ${t("كم", "km")}` },
+    { icon: Car, label: t("الحالة", "Condition"), value: locale === "ar" ? (vehicle.condition === "new" ? "جديدة" : "مستعملة") : (vehicle.condition === "new" ? "New" : "Used") },
     { icon: Fuel, label: t("الوقود", "Fuel"), value: locale === "ar" ? vehicle.fuelTypeAr : vehicle.fuelType },
     { icon: Settings2, label: t("ناقل الحركة", "Transmission"), value: locale === "ar" ? vehicle.transmissionAr : vehicle.transmission },
     { icon: Cpu, label: t("المحرك", "Engine"), value: vehicle.engineSize },
-    { icon: Zap, label: t("القوة", "Horsepower"), value: `${vehicle.horsepower} HP` },
+    { icon: Zap, label: t("القوة", "Horsepower"), value: vehicle.horsepower ? `${vehicle.horsepower} HP` : "—" },
     { icon: Palette, label: t("اللون الخارجي", "Exterior"), value: locale === "ar" ? vehicle.colorAr : vehicle.color },
     { icon: Sofa, label: t("اللون الداخلي", "Interior"), value: locale === "ar" ? vehicle.interiorColorAr : vehicle.interiorColor },
     { icon: FileText, label: t("نوع الهيكل", "Body"), value: locale === "ar" ? vehicle.bodyTypeAr : vehicle.bodyType },

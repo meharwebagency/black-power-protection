@@ -83,6 +83,11 @@ export function VehicleInfo({ vehicle, locale }: VehicleInfoProps) {
         <Badge variant={statusVariant} dot size="lg">
           {statusLabel}
         </Badge>
+        {vehicle.condition === "new" && (
+          <Badge variant="gold" size="lg">
+            {locale === "ar" ? "جديدة" : "New"}
+          </Badge>
+        )}
         {vehicle.featured && (
           <Badge variant="gold" size="lg" className="gap-1">
             <Star className="h-3 w-3 fill-current" />

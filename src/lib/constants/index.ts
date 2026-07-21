@@ -86,6 +86,11 @@ export const VEHICLE_STATUSES = [
   { value: "pending", labelAr: "قيد المراجعة", label: "Pending" },
 ] as const;
 
+export const VEHICLE_CONDITIONS = [
+  { value: "new", labelAr: "جديدة", label: "New" },
+  { value: "used", labelAr: "مستعملة", label: "Used" },
+] as const;
+
 export const VEHICLE_COLORS = [
   { value: "black", labelAr: "أسود", label: "Black" },
   { value: "white", labelAr: "أبيض", label: "White" },

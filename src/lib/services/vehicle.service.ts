@@ -111,6 +111,7 @@ export class VehicleService {
     if (filterParams.fuel_type) query = query.eq("fuel_type", filterParams.fuel_type);
     if (filterParams.transmission) query = query.eq("transmission", filterParams.transmission);
     if (filterParams.body_type) query = query.eq("body_type", filterParams.body_type);
+    if (filterParams.condition) query = query.eq("condition", filterParams.condition);
 
     if (filterParams.search) {
       query = query.or(

@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Menu, X, Sun, Moon, Search, Phone } from "lucide-react";
+import { Menu, X, Search, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
@@ -26,11 +26,9 @@ interface HeaderProps {
       appName: string;
     };
   };
-  onToggleTheme: () => void;
-  isDark: boolean;
 }
 
-export function Header({ locale, dictionary, onToggleTheme, isDark }: HeaderProps) {
+export function Header({ locale, dictionary }: HeaderProps) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const pathname = usePathname();
@@ -127,10 +125,6 @@ export function Header({ locale, dictionary, onToggleTheme, isDark }: HeaderProp
 
   const hrefFor = (href: string) => (href === "/" ? homeHref : `${homeHref}${href}`);
 
-  const themeLabel = isDark
-    ? t("التبديل إلى الوضع الفاتح", "Switch to light mode")
-    : t("التبديل إلى الوضع الداكن", "Switch to dark mode");
-
   const drawerTransition = prefersReducedMotion
     ? { duration: 0 }
     : { duration: 0.45, ease: easings.luxury };
@@ -139,25 +133,15 @@ export function Header({ locale, dictionary, onToggleTheme, isDark }: HeaderProp
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-500",
-          scrolled ? "border-border/60" : "border-transparent"
+          "fixed inset-x-0 top-0 z-50 border-b bg-[#000000] border-white/[0.08]",
+          "shadow-[0_4px_20px_rgba(0,0,0,0.35)] transition-colors duration-200"
         )}
       >
-        {/* Glass surface — fades in with the same threshold as the border */}
-        <div
-          aria-hidden="true"
-          className={cn(
-            "absolute inset-0 glass-panel transition-opacity duration-500",
-            scrolled ? "opacity-100" : "opacity-0"
-          )}
-        />
-
         <Container size="xl">
           <div
             className={cn(
               "relative flex items-center justify-between",
-              "transition-[height] duration-500 ease-luxury",
-              scrolled ? "h-14 md:h-16" : "h-18 md:h-20"
+              "h-18 md:h-20"
             )}
           >
             {/* Logo */}
@@ -180,7 +164,7 @@ export function Header({ locale, dictionary, onToggleTheme, isDark }: HeaderProp
               <span className="flex min-w-0 flex-col leading-none">
                 <span
                   className={cn(
-                    "truncate font-display font-semibold text-foreground",
+                    "truncate font-display font-semibold text-white transition-colors duration-200",
                     "text-sm md:text-base",
                     !isAr && "uppercase tracking-[0.14em]"
                   )}
@@ -189,7 +173,7 @@ export function Header({ locale, dictionary, onToggleTheme, isDark }: HeaderProp
                 </span>
                 <span
                   className={cn(
-                    "truncate text-[0.625rem] text-muted-foreground",
+                    "truncate text-2xs text-white/60",
                     "mt-1",
                     !isAr && "uppercase tracking-[0.3em]"
                   )}
@@ -213,13 +197,13 @@ export function Header({ locale, dictionary, onToggleTheme, isDark }: HeaderProp
                         href={hrefFor(link.href)}
                         aria-current={active ? "page" : undefined}
                         className={cn(
-                          "relative block px-4 py-2.5 transition-colors duration-300",
+                          "relative block px-4 py-2.5 transition-colors duration-200",
                           isAr
                             ? "text-sm font-medium"
-                            : "text-[0.8125rem] font-medium uppercase tracking-[0.08em]",
+                            : "text-body-sm font-medium uppercase tracking-[0.08em]",
                           active
-                            ? "text-foreground"
-                            : "text-muted-foreground hover:text-foreground",
+                            ? "text-white"
+                            : "text-white/70 hover:text-gold-400",
                           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg"
                         )}
                       >
@@ -251,7 +235,7 @@ export function Header({ locale, dictionary, onToggleTheme, isDark }: HeaderProp
                 asChild
                 variant="ghost"
                 size="icon"
-                className="rounded-lg text-muted-foreground hover:text-foreground"
+                className="rounded-lg text-white transition-colors duration-200 hover:bg-white/10 hover:text-gold-400"
               >
                 <Link
                   href={`/${locale}/vehicles`}
@@ -261,31 +245,12 @@ export function Header({ locale, dictionary, onToggleTheme, isDark }: HeaderProp
                 </Link>
               </Button>
 
-              {/* Theme toggle */}
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={onToggleTheme}
-                aria-label={themeLabel}
-                suppressHydrationWarning
-                className="relative hidden rounded-lg text-muted-foreground hover:text-foreground md:inline-flex"
-              >
-                <Sun
-                  strokeWidth={1.75}
-                  className="h-[1.125rem] w-[1.125rem] rotate-0 scale-100 transition-all duration-500 ease-luxury dark:-rotate-90 dark:scale-0"
-                />
-                <Moon
-                  strokeWidth={1.75}
-                  className="absolute h-[1.125rem] w-[1.125rem] rotate-90 scale-0 transition-all duration-500 ease-luxury dark:rotate-0 dark:scale-100"
-                />
-              </Button>
-
               {/* Language — explicit target language, not an ambiguous globe */}
               <Button
                 asChild
                 variant="ghost"
                 size="sm"
-                className="hidden rounded-lg px-3 text-muted-foreground hover:text-foreground md:inline-flex"
+                className="hidden rounded-lg px-3 text-white transition-colors duration-200 hover:bg-white/10 hover:text-gold-400 md:inline-flex"
               >
                 <Link
                   href={otherLocalePath}
@@ -296,172 +261,152 @@ export function Header({ locale, dictionary, onToggleTheme, isDark }: HeaderProp
                   <span
                     className={cn(
                       otherLocale === "en" &&
-                        "text-[0.75rem] uppercase tracking-[0.08em]",
-                      otherLocale === "ar" && "text-sm"
-                    )}
-                  >
-                    {dictionary.nav.switchLanguage}
-                  </span>
-                </Link>
-              </Button>
+                        "text-body-xs uppercase tracking-[0.08em]",
+                       otherLocale === "ar" && "text-sm"
+                     )}
+                   >
+                     {dictionary.nav.switchLanguage}
+                   </span>
+                 </Link>
+               </Button>
 
-              {/* Single solid CTA */}
-              <Button
-                asChild
-                variant="primary"
-                size="sm"
-                className="ms-2 hidden rounded-lg px-4 md:inline-flex"
-              >
-                <Link href={`/${locale}/contact`}>
-                  {t("اتصل بنا", "Contact Us")}
-                </Link>
-              </Button>
+               {/* Single solid CTA */}
+               <Button
+                 asChild
+                 variant="primary"
+                 size="sm"
+                 className="ms-2 hidden rounded-lg px-4 bg-white text-[#050505] transition-colors duration-200 hover:bg-gold-400 hover:text-[#050505] md:inline-flex"
+               >
+                 <Link href={`/${locale}/contact`}>
+                   {t("اتصل بنا", "Contact Us")}
+                 </Link>
+               </Button>
 
-              {/* Mobile menu toggle */}
-              <Button
-                ref={toggleRef}
-                variant="ghost"
-                size="icon"
-                className="rounded-lg md:hidden"
-                onClick={() => setMobileOpen(true)}
-                aria-label={dictionary.nav.openMenu}
-                aria-expanded={mobileOpen}
-                aria-controls="mobile-menu"
-                aria-haspopup="dialog"
-              >
-                <Menu className="h-5 w-5" strokeWidth={1.75} />
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </header>
+               {/* Mobile menu toggle */}
+               <Button
+                 ref={toggleRef}
+                 variant="ghost"
+                 size="icon"
+                 className="rounded-lg text-white transition-colors duration-200 hover:bg-white/10 hover:text-gold-400 md:hidden"
+                 onClick={() => setMobileOpen(true)}
+                 aria-label={dictionary.nav.openMenu}
+                 aria-expanded={mobileOpen}
+                 aria-controls="mobile-menu"
+                 aria-haspopup="dialog"
+               >
+                 <Menu className="h-5 w-5" strokeWidth={1.75} />
+               </Button>
+             </div>
+           </div>
+         </Container>
+       </header>
 
-      {/* Mobile drawer */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <div className="fixed inset-0 z-[60] md:hidden">
-            {/* Scrim */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={
-                prefersReducedMotion ? { duration: 0 } : { duration: 0.3 }
-              }
-              className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-              onClick={() => setMobileOpen(false)}
-              aria-hidden="true"
-            />
+       {/* Mobile drawer */}
+       <AnimatePresence>
+         {mobileOpen && (
+           <div className="fixed inset-0 z-[60] md:hidden">
+             {/* Scrim */}
+             <motion.div
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+               transition={
+                 prefersReducedMotion ? { duration: 0 } : { duration: 0.3 }
+               }
+               className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+               onClick={() => setMobileOpen(false)}
+               aria-hidden="true"
+             />
 
-            {/* Panel — slides in from the end edge in both directions */}
-            <motion.nav
-              ref={panelRef}
-              id="mobile-menu"
-              role="dialog"
-              aria-modal="true"
-              aria-label={dictionary.nav.menu}
-              tabIndex={-1}
-              onKeyDown={trapFocus}
-              initial={{ x: isAr ? "-100%" : "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: isAr ? "-100%" : "100%" }}
-              transition={drawerTransition}
-              className="absolute inset-y-0 end-0 flex w-[85%] max-w-xs flex-col border-s border-border bg-background outline-none"
-            >
-              {/* Drawer header */}
-              <div className="flex h-18 shrink-0 items-center justify-between border-b border-border/60 px-5">
-                <span
-                  className={cn(
-                    "font-display text-sm font-semibold text-foreground",
-                    !isAr && "uppercase tracking-[0.14em]"
-                  )}
-                >
-                  {t("بلاك باور", "Black Power")}
-                </span>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="rounded-lg"
-                  onClick={() => setMobileOpen(false)}
-                  aria-label={dictionary.nav.closeMenu}
-                >
-                  <X className="h-5 w-5" strokeWidth={1.75} />
-                </Button>
-              </div>
+             {/* Panel — slides in from the end edge in both directions */}
+             <motion.nav
+               ref={panelRef}
+               id="mobile-menu"
+               role="dialog"
+               aria-modal="true"
+               aria-label={dictionary.nav.menu}
+               tabIndex={-1}
+               onKeyDown={trapFocus}
+               initial={{ x: isAr ? "-100%" : "100%" }}
+               animate={{ x: 0 }}
+               exit={{ x: isAr ? "-100%" : "100%" }}
+               transition={drawerTransition}
+               className="absolute inset-y-0 end-0 flex w-[85%] max-w-xs flex-col border-s border-border bg-background outline-none"
+             >
+               {/* Drawer header */}
+               <div className="flex h-18 shrink-0 items-center justify-between border-b border-border/60 px-5">
+                 <span
+                   className={cn(
+                     "font-display text-sm font-semibold text-foreground",
+                     !isAr && "uppercase tracking-[0.14em]"
+                   )}
+                 >
+                   {t("بلاك باور", "Black Power")}
+                 </span>
+                 <Button
+                   variant="ghost"
+                   size="icon"
+                   className="rounded-lg"
+                   onClick={() => setMobileOpen(false)}
+                   aria-label={dictionary.nav.closeMenu}
+                 >
+                   <X className="h-5 w-5" strokeWidth={1.75} />
+                 </Button>
+               </div>
 
-              {/* Links */}
-              <ul className="flex-1 overflow-y-auto px-3 py-6">
-                {NAV_LINKS.map((link, index) => {
-                  const active = isLinkActive(link.href);
-                  return (
-                    <motion.li
-                      key={link.href}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={
-                        prefersReducedMotion
-                          ? { duration: 0 }
-                          : { delay: 0.05 + index * 0.05, duration: 0.35 }
-                      }
-                    >
-                      <Link
-                        href={hrefFor(link.href)}
-                        aria-current={active ? "page" : undefined}
-                        className={cn(
-                          "relative block rounded-lg px-4 py-3.5 text-base transition-colors duration-300",
-                          active
-                            ? "font-medium text-foreground"
-                            : "text-muted-foreground hover:text-foreground",
-                          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                        )}
-                      >
-                        {active && (
-                          <span
-                            aria-hidden="true"
-                            className="absolute inset-y-3 start-0 w-px bg-accent"
-                          />
-                        )}
-                        {isAr ? link.labelAr : link.label}
-                      </Link>
-                    </motion.li>
-                  );
-                })}
-              </ul>
+               {/* Links */}
+               <ul className="flex-1 overflow-y-auto px-3 py-6">
+                 {NAV_LINKS.map((link, index) => {
+                   const active = isLinkActive(link.href);
+                   return (
+                     <motion.li
+                       key={link.href}
+                       initial={{ opacity: 0 }}
+                       animate={{ opacity: 1 }}
+                       transition={
+                         prefersReducedMotion
+                           ? { duration: 0 }
+                           : { delay: 0.05 + index * 0.05, duration: 0.35 }
+                       }
+                     >
+                       <Link
+                         href={hrefFor(link.href)}
+                         aria-current={active ? "page" : undefined}
+                         className={cn(
+                           "relative block rounded-lg px-4 py-3.5 text-base transition-colors duration-300",
+                           active
+                             ? "font-medium text-foreground"
+                             : "text-muted-foreground hover:text-foreground",
+                           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                         )}
+                       >
+                         {active && (
+                           <span
+                             aria-hidden="true"
+                             className="absolute inset-y-3 start-0 w-px bg-accent"
+                           />
+                         )}
+                         {isAr ? link.labelAr : link.label}
+                       </Link>
+                     </motion.li>
+                   );
+                 })}
+               </ul>
 
-              {/* Drawer footer: preferences + contact */}
-              <div className="shrink-0 space-y-4 border-t border-border/60 px-5 py-5">
-                <div className="flex items-center justify-between">
-                  {/* Theme */}
-                  <button
-                    onClick={onToggleTheme}
-                    aria-label={themeLabel}
-                    suppressHydrationWarning
-                    className="flex items-center gap-2.5 rounded-lg py-2 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    <span className="relative inline-flex h-[1.125rem] w-[1.125rem]">
-                      <Sun
-                        strokeWidth={1.75}
-                        className="absolute inset-0 h-full w-full scale-100 transition-all duration-500 dark:scale-0"
-                      />
-                      <Moon
-                        strokeWidth={1.75}
-                        className="absolute inset-0 h-full w-full scale-0 transition-all duration-500 dark:scale-100"
-                      />
-                    </span>
-                    {t("المظهر", "Appearance")}
-                  </button>
-
-                  {/* Language */}
-                  <Link
-                    href={otherLocalePath}
-                    lang={otherLocale}
-                    hrefLang={otherLocale}
-                    aria-label={dictionary.nav.languageLabel}
-                    className={cn(
-                      "rounded-lg py-2 text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                      otherLocale === "en"
-                        ? "text-[0.75rem] uppercase tracking-[0.08em]"
-                        : "text-sm"
+               {/* Drawer footer: preferences + contact */}
+               <div className="shrink-0 space-y-4 border-t border-border/60 px-5 py-5">
+                  <div className="flex items-center justify-between">
+                    {/* Language */}
+                   <Link
+                     href={otherLocalePath}
+                     lang={otherLocale}
+                     hrefLang={otherLocale}
+                     aria-label={dictionary.nav.languageLabel}
+                     className={cn(
+                       "rounded-lg py-2 text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                       otherLocale === "en"
+                         ? "text-body-xs uppercase tracking-[0.08em]"
+                         : "text-sm"
                     )}
                   >
                     {dictionary.nav.switchLanguage}

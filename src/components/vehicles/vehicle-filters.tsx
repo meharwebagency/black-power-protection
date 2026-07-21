@@ -16,6 +16,7 @@ import {
   TRANSMISSION_TYPES,
   VEHICLE_STATUSES,
   VEHICLE_COLORS,
+  VEHICLE_CONDITIONS,
 } from "@/lib/constants";
 import type { VehicleFilter } from "@/types/vehicle";
 import type { Locale } from "@/types";
@@ -45,6 +46,7 @@ export function VehicleFilters({ filters, onFilterChange, locale, resultCount }:
     transmission: false,
     color: false,
     status: false,
+    condition: true,
   });
 
   const t = (ar: string, en: string) => (locale === "ar" ? ar : en);
@@ -62,6 +64,7 @@ export function VehicleFilters({ filters, onFilterChange, locale, resultCount }:
     filters.fuelType,
     filters.transmission,
     filters.status,
+    filters.condition,
     filters.color,
     filters.yearFrom,
     filters.yearTo,
@@ -126,6 +129,24 @@ export function VehicleFilters({ filters, onFilterChange, locale, resultCount }:
             ))}
           </div>
         </ScrollArea>
+      </FilterSection>
+
+      {/* Condition */}
+      <FilterSection
+        title={t("الحالة", "Condition")}
+        isOpen={openSections.condition}
+        onToggle={() => toggleSection("condition")}
+      >
+        <div className="flex flex-wrap gap-1.5">
+          {VEHICLE_CONDITIONS.map((c) => (
+            <FilterPill
+              key={c.value}
+              label={t(c.labelAr, c.label)}
+              active={filters.condition === c.value}
+              onClick={() => updateFilter("condition", filters.condition === c.value ? undefined : c.value)}
+            />
+          ))}
+        </div>
       </FilterSection>
 
       {/* Price Range */}

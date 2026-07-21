@@ -4,62 +4,70 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 24 10% 4%;
-    --card: 0 0% 100%;
-    --card-foreground: 24 10% 4%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 24 10% 4%;
-    --primary: 24 6% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 30 6% 96%;
-    --secondary-foreground: 24 10% 10%;
-    --muted: 30 6% 96%;
-    --muted-foreground: 24 5% 40%;
-    --accent: 40 50% 50%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --success: 142 71% 45%;
-    --success-foreground: 0 0% 98%;
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 10%;
-    --border: 30 6% 90%;
-    --input: 30 6% 92%;
-    --ring: 24 6% 10%;
-    --radius: 0.75rem;
-    --surface: 0 0% 100%;
-    --surface-raised: 30 6% 97%;
-    --surface-overlay: 0 0% 100%;
-    --glass-bg: rgba(255, 255, 255, 0.72);
-    --glass-border: rgba(0, 0, 0, 0.06);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-  }
-
-  .dark {
-    --background: 24 8% 6%;
-    --foreground: 0 0% 95%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
     --card: 24 8% 8%;
-    --card-foreground: 0 0% 95%;
+    --card-foreground: 0 0% 100%;
     --popover: 24 8% 8%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 0 0% 95%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
     --primary-foreground: 24 8% 6%;
     --secondary: 24 6% 12%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary-foreground: 0 0% 100%;
     --muted: 24 6% 12%;
-    --muted-foreground: 24 5% 55%;
-    --accent: 40 55% 55%;
+    --muted-foreground: 217 10% 64%;
+    --accent: 43 74% 52%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
     --success: 142 71% 45%;
-    --success-foreground: 0 0% 98%;
+    --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 10%;
     --border: 24 6% 16%;
     --input: 24 6% 14%;
-    --ring: 0 0% 80%;
+    --ring: 0 0% 100%;
+    --radius: 0.75rem;
+    --surface: 24 8% 6%;
+    --surface-raised: 24 8% 10%;
+    --surface-overlay: 24 8% 10%;
+    --glass-bg: rgba(15, 12, 10, 0.72);
+    --glass-border: rgba(255, 255, 255, 0.06);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.24);
+    --text-heading: 0 0% 100%;
+    --text-section: 0 0% 97%;
+    --text-body: 220 9% 82%;
+    --text-secondary: 217 10% 64%;
+    --text-muted: 220 9% 46%;
+    --text-gold: 43 74% 52%;
+    --text-error: 0 84% 60%;
+    --text-success: 142 71% 45%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 24 8% 8%;
+    --card-foreground: 0 0% 100%;
+    --popover: 24 8% 8%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 24 8% 6%;
+    --secondary: 24 6% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 24 6% 12%;
+    --muted-foreground: 217 10% 64%;
+    --accent: 43 74% 52%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 10%;
+    --border: 24 6% 16%;
+    --input: 24 6% 14%;
+    --ring: 0 0% 100%;
     --surface: 24 8% 6%;
     --surface-raised: 24 8% 10%;
     --surface-overlay: 24 8% 10%;
@@ -94,6 +102,14 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+  }
+
+  a:not([class*="text-"]) {
+    @apply text-foreground transition-colors duration-200;
+  }
+
+  a:not([class*="text-"]):hover {
+    color: hsl(var(--text-gold));
   }
 
   ::selection {
@@ -355,6 +371,13 @@
 }
 
 @layer utilities {
+  .text-heading { color: hsl(var(--text-heading)); }
+  .text-section { color: hsl(var(--text-section)); }
+  .text-body { color: hsl(var(--text-body)); }
+  .text-dim { color: hsl(var(--text-secondary)); }
+  .text-faint { color: hsl(var(--text-muted)); }
+  .text-gold-accent { color: hsl(var(--text-gold)); }
+
   .safe-area-top {
     padding-top: env(safe-area-inset-top);
   }
