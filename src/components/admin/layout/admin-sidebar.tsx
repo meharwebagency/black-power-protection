@@ -109,7 +109,7 @@ export function AdminSidebar({
           "fixed inset-y-0 z-50 flex flex-col border-e border-border bg-background transition-[width] duration-300",
           "lg:relative lg:translate-x-0",
           isCollapsed ? "w-72 lg:w-20" : "w-72",
-          isArabic ? "end-0" : "start-0"
+          "start-0"
         )}
       >
         {/* Logo */}
