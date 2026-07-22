@@ -31,7 +31,7 @@ export function ScrollToTop({ className }: ScrollToTopProps) {
       transition={{ duration: 0.3, ease: "easeOut" }}
       onClick={scrollToTop}
       className={cn(
-        "fixed bottom-5 start-5 z-40 flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-elevated transition-all duration-300 hover:shadow-elevated-lg hover:scale-105 md:bottom-6 md:start-6",
+        "fixed bottom-4 start-4 z-40 flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-elevated transition-all duration-300 hover:shadow-elevated-lg hover:scale-105 sm:bottom-5 sm:start-5 md:bottom-6 md:start-6",
         className
       )}
       aria-label="Scroll to top"

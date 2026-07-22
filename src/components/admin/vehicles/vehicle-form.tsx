@@ -358,13 +358,7 @@ export function VehicleForm({ locale, initialData, mode }: VehicleFormProps) {
       !brandOk ||
       !modelOk ||
       !year ||
-      !price ||
-      mileage === "" ||
-      !fuelType ||
-      !transmission ||
-      !bodyType ||
-      !color.trim() ||
-      !colorAr.trim()
+      !price
     ) {
       toast({ type: "error", title: t.requiredError });
       return;
@@ -425,15 +419,15 @@ export function VehicleForm({ locale, initialData, mode }: VehicleFormProps) {
         year: Number(year),
         price: Number(price),
         currency: "KWD",
-        mileage: Number(mileage),
-        fuel_type: fuelType,
-        transmission,
-        body_type: bodyType,
+        ...(mileage !== "" ? { mileage: Number(mileage) } : {}),
+        ...(fuelType ? { fuel_type: fuelType } : {}),
+        ...(transmission ? { transmission } : {}),
+        ...(bodyType ? { body_type: bodyType } : {}),
         engine_size: engineSize.trim() || null,
         horsepower: horsepower ? Number(horsepower) : null,
         condition,
-        color: color.trim(),
-        color_ar: colorAr.trim(),
+        ...(color.trim() ? { color: color.trim() } : {}),
+        ...(colorAr.trim() ? { color_ar: colorAr.trim() } : {}),
         description: descriptionEn,
         description_ar: descriptionAr,
         features,
@@ -666,7 +660,7 @@ export function VehicleForm({ locale, initialData, mode }: VehicleFormProps) {
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">
-                      {t.condition} <span className="text-destructive">*</span>
+                      {t.condition}
                     </label>
                     <select
                       value={condition}
@@ -692,7 +686,7 @@ export function VehicleForm({ locale, initialData, mode }: VehicleFormProps) {
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">
-                      {t.mileage} <span className="text-destructive">*</span>
+                      {t.mileage}
                     </label>
                     <Input
                       type="number"
@@ -703,7 +697,7 @@ export function VehicleForm({ locale, initialData, mode }: VehicleFormProps) {
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">
-                      {t.fuelType} <span className="text-destructive">*</span>
+                      {t.fuelType}
                     </label>
                     <select
                       value={fuelType}
@@ -722,7 +716,7 @@ export function VehicleForm({ locale, initialData, mode }: VehicleFormProps) {
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">
-                      {t.transmission} <span className="text-destructive">*</span>
+                      {t.transmission}
                     </label>
                     <select
                       value={transmission}
@@ -740,7 +734,7 @@ export function VehicleForm({ locale, initialData, mode }: VehicleFormProps) {
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">
-                      {t.bodyType} <span className="text-destructive">*</span>
+                      {t.bodyType}
                     </label>
                     <select
                       value={bodyType}
@@ -761,7 +755,7 @@ export function VehicleForm({ locale, initialData, mode }: VehicleFormProps) {
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">
-                      {t.color} <span className="text-destructive">*</span>
+                      {t.color}
                     </label>
                     <Input
                       placeholder={isArabic ? "Black" : "Black"}
@@ -771,7 +765,7 @@ export function VehicleForm({ locale, initialData, mode }: VehicleFormProps) {
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">
-                      {t.colorAr} <span className="text-destructive">*</span>
+                      {t.colorAr}
                     </label>
                     <Input
                       dir="rtl"

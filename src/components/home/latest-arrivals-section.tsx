@@ -148,7 +148,7 @@ export function LatestArrivalsSection({ locale }: LatestArrivalsSectionProps) {
                       <div className="mt-3 md:mt-4 flex items-center gap-3 md:gap-4 border-t border-border pt-3 md:pt-4 text-muted-foreground">
                         <div className="flex items-center gap-1.5">
                           <Gauge className="h-3.5 w-3.5" />
-                          <span className="text-2xs">{new Intl.NumberFormat(locale === "ar" ? "ar-KW" : "en-US").format(vehicle.mileage)} km</span>
+                          <span className="text-2xs">{new Intl.NumberFormat(locale === "ar" ? "ar-KW" : "en-US", { numberingSystem: "latn" }).format(vehicle.mileage)} km</span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <Fuel className="h-3.5 w-3.5" />

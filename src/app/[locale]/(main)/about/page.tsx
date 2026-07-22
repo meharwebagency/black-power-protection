@@ -74,7 +74,7 @@ export default function AboutPage({ params }: AboutPageProps) {
   return (
     <div className="relative">
       {/* Hero */}
-      <section className="relative overflow-hidden py-20 md:py-28">
+      <section className="relative overflow-hidden py-16 md:py-20 lg:py-28">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/50" />
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -end-40 h-[500px] w-[500px] rounded-full bg-gold-400/5 blur-3xl" />
@@ -157,12 +157,12 @@ export default function AboutPage({ params }: AboutPageProps) {
 
             {/* Logo card */}
             <motion.div variants={fadeUp} className="flex justify-center">
-              <div className="relative flex h-64 w-64 items-center justify-center rounded-3xl bg-gradient-to-br from-secondary/50 to-secondary p-8 ring-1 ring-border">
+              <div className="relative flex aspect-square w-full max-w-[256px] items-center justify-center rounded-3xl bg-gradient-to-br from-secondary/50 to-secondary p-6 sm:p-8 ring-1 ring-border">
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-gold-400/5 to-transparent" />
                 <img
                   src={LOGO_URL}
                   alt="Black Power Protection"
-                  className="relative h-40 w-40 object-contain"
+                  className="relative h-28 w-28 sm:h-36 sm:w-36 md:h-40 md:w-40 object-contain"
                 />
               </div>
             </motion.div>
@@ -183,7 +183,7 @@ export default function AboutPage({ params }: AboutPageProps) {
             {STATS.map((stat, i) => (
               <motion.div key={i} variants={fadeUp}>
                 <Card className="text-center transition-shadow hover:shadow-elevated">
-                  <CardContent className="flex flex-col items-center p-6">
+                  <CardContent className="flex flex-col items-center p-4 sm:p-6">
                     <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-gold-400/10">
                       <stat.icon className="h-6 w-6 text-gold-600 dark:text-gold-400" />
                     </div>
@@ -257,7 +257,7 @@ export default function AboutPage({ params }: AboutPageProps) {
               {VALUES.map((value, i) => (
                 <motion.div key={i} variants={fadeUp}>
                   <Card className="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated">
-                    <CardContent className="flex flex-col p-6">
+                    <CardContent className="flex flex-col p-4 sm:p-6">
                       <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
                         <value.icon className="h-6 w-6 text-primary" />
                       </div>
@@ -284,7 +284,7 @@ export default function AboutPage({ params }: AboutPageProps) {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={staggerContainer}
-            className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-foreground to-foreground/90 p-8 text-center md:p-12"
+            className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-foreground to-foreground/90 p-6 text-center sm:p-8 md:p-12"
           >
             <div className="absolute inset-0 overflow-hidden">
               <div className="absolute -top-20 -end-20 h-40 w-40 rounded-full bg-gold-400/10 blur-3xl" />

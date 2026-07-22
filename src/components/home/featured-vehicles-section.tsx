@@ -262,7 +262,7 @@ function FeaturedCard({ vehicle, locale }: { vehicle: Vehicle; locale: Locale })
   const model = isAr ? vehicle.modelAr : vehicle.model;
   const fuelType = isAr ? vehicle.fuelTypeAr : vehicle.fuelType;
   const transmission = isAr ? vehicle.transmissionAr : vehicle.transmission;
-  const mileage = new Intl.NumberFormat(isAr ? "ar-KW" : "en-US").format(vehicle.mileage);
+  const mileage = new Intl.NumberFormat(isAr ? "ar-KW" : "en-US", { numberingSystem: "latn" }).format(vehicle.mileage);
 
   return (
     <Link href={`/${locale}/vehicles/${vehicle.slug}`} className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] rounded-xl">

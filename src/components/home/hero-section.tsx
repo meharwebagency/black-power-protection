@@ -68,7 +68,7 @@ export function HeroSection({ locale }: HeroSectionProps) {
           variants={stage}
           initial="hidden"
           animate="visible"
-          className="flex min-h-[440px] max-w-xl flex-col justify-center py-14 text-start md:min-h-[500px] md:py-16 lg:min-h-[560px]"
+          className="flex min-h-[380px] max-w-xl flex-col justify-center py-12 text-start sm:min-h-[440px] md:min-h-[500px] md:py-16 lg:min-h-[560px]"
         >
           {/* Location */}
           <motion.p

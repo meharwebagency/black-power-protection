@@ -52,8 +52,8 @@ function Drawer({
               "fixed z-50 bg-background shadow-elevated-lg",
               direction === "right" && "inset-y-0 end-0 h-full w-full max-w-md",
               direction === "left" && "inset-y-0 start-0 h-full w-full max-w-md",
-              direction === "top" && "inset-x-0 top-0 h-auto max-h-[80vh]",
-              direction === "bottom" && "inset-x-0 bottom-0 h-auto max-h-[80vh]"
+              direction === "top" && "inset-x-0 top-0 h-full max-h-[100dvh]",
+              direction === "bottom" && "inset-x-0 bottom-0 h-full max-h-[100dvh]"
             )}
           >
             {children}

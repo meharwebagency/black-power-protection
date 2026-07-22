@@ -23,7 +23,7 @@ export function VehicleSpecs({ vehicle, locale }: VehicleSpecsProps) {
 
   const specs = [
     { icon: Calendar, label: t("السنة", "Year"), value: String(vehicle.year) },
-    { icon: Gauge, label: t("المسافة", "Mileage"), value: `${new Intl.NumberFormat(locale === "ar" ? "ar-KW" : "en-US").format(vehicle.mileage)} ${t("كم", "km")}` },
+    { icon: Gauge, label: t("المسافة", "Mileage"), value: `${new Intl.NumberFormat(locale === "ar" ? "ar-KW" : "en-US", { numberingSystem: "latn" }).format(vehicle.mileage)} ${t("كم", "km")}` },
     { icon: Car, label: t("الحالة", "Condition"), value: locale === "ar" ? (vehicle.condition === "new" ? "جديدة" : "مستعملة") : (vehicle.condition === "new" ? "New" : "Used") },
     { icon: Fuel, label: t("الوقود", "Fuel"), value: locale === "ar" ? vehicle.fuelTypeAr : vehicle.fuelType },
     { icon: Settings2, label: t("ناقل الحركة", "Transmission"), value: locale === "ar" ? vehicle.transmissionAr : vehicle.transmission },

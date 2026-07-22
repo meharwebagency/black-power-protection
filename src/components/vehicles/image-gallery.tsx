@@ -138,7 +138,7 @@ export function ImageGallery({ images, make, model, year, locale }: ImageGallery
                 aria-current={index === activeIndex}
                 onClick={() => setActiveIndex(index)}
                 className={cn(
-                  "relative h-16 w-24 shrink-0 overflow-hidden rounded-lg transition-all duration-300 sm:h-[72px] sm:w-28",
+                  "relative h-14 w-20 shrink-0 overflow-hidden rounded-lg transition-all duration-300 sm:h-16 sm:w-24 md:h-[72px] md:w-28",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   index === activeIndex
                     ? "opacity-100 ring-1 ring-accent"

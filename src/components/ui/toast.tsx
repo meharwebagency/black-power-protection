@@ -81,7 +81,13 @@ function ToastViewport({
   toasts: Toast[];
   onDismiss: (id: string) => void;
 }) {
-  if (typeof window === "undefined") return null;
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return createPortal(
     <div className="fixed inset-x-0 bottom-0 z-[200] flex flex-col items-center gap-2 p-4 sm:items-end sm:p-6">

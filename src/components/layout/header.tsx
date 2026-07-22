@@ -356,63 +356,96 @@ export function Header({ locale, dictionary }: HeaderProps) {
 
                {/* Links */}
                <ul className="flex-1 overflow-y-auto px-3 py-6">
-                 {NAV_LINKS.map((link, index) => {
-                   const active = isLinkActive(link.href);
-                   return (
-                     <motion.li
-                       key={link.href}
-                       initial={{ opacity: 0 }}
-                       animate={{ opacity: 1 }}
-                       transition={
-                         prefersReducedMotion
-                           ? { duration: 0 }
-                           : { delay: 0.05 + index * 0.05, duration: 0.35 }
-                       }
-                     >
-                       <Link
-                         href={hrefFor(link.href)}
-                         aria-current={active ? "page" : undefined}
-                         className={cn(
-                           "relative block rounded-lg px-4 py-3.5 text-base transition-colors duration-300",
-                           active
-                             ? "font-medium text-foreground"
-                             : "text-muted-foreground hover:text-foreground",
-                           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                         )}
-                       >
-                         {active && (
-                           <span
-                             aria-hidden="true"
-                             className="absolute inset-y-3 start-0 w-px bg-accent"
-                           />
-                         )}
-                         {isAr ? link.labelAr : link.label}
-                       </Link>
-                     </motion.li>
-                   );
-                 })}
+                  {NAV_LINKS.map((link, index) => {
+                    const active = isLinkActive(link.href);
+                    return (
+                      <motion.li
+                        key={link.href}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={
+                          prefersReducedMotion
+                            ? { duration: 0 }
+                            : { delay: 0.05 + index * 0.05, duration: 0.35 }
+                        }
+                      >
+                        <Link
+                          href={hrefFor(link.href)}
+                          aria-current={active ? "page" : undefined}
+                          className={cn(
+                            "relative block rounded-lg px-4 py-3.5 text-base transition-colors duration-300",
+                            active
+                              ? "font-medium text-foreground"
+                              : "text-muted-foreground hover:text-foreground",
+                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                          )}
+                        >
+                          {active && (
+                            <span
+                              aria-hidden="true"
+                              className="absolute inset-y-3 start-0 w-px bg-accent"
+                            />
+                          )}
+                          {isAr ? link.labelAr : link.label}
+                        </Link>
+                      </motion.li>
+                    );
+                  })}
+                  <motion.li
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={
+                      prefersReducedMotion
+                        ? { duration: 0 }
+                        : { delay: 0.05 + NAV_LINKS.length * 0.05, duration: 0.35 }
+                    }
+                  >
+                    <Link
+                      href={otherLocalePath}
+                      lang={otherLocale}
+                      hrefLang={otherLocale}
+                      aria-label={dictionary.nav.languageLabel}
+                      className={cn(
+                        "relative block rounded-lg px-4 py-3.5 text-base transition-colors duration-300",
+                        "text-muted-foreground hover:text-foreground",
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      )}
+                    >
+                      {dictionary.nav.switchLanguage}
+                    </Link>
+                  </motion.li>
+                  <motion.li
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={
+                      prefersReducedMotion
+                        ? { duration: 0 }
+                        : { delay: 0.05 + (NAV_LINKS.length + 1) * 0.05, duration: 0.35 }
+                    }
+                  >
+                    <Link
+                      href={`/${locale}/login`}
+                      className={cn(
+                        "relative block rounded-lg px-4 py-3.5 text-base transition-colors duration-300",
+                        pathname.includes("/login") || pathname.includes("/admin")
+                          ? "font-medium text-foreground"
+                          : "text-muted-foreground hover:text-foreground",
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      )}
+                    >
+                      {(pathname.includes("/login") || pathname.includes("/admin")) && (
+                        <span
+                          aria-hidden="true"
+                          className="absolute inset-y-3 start-0 w-px bg-accent"
+                        />
+                      )}
+                      {t("لوحة التحكم", "Admin")}
+                    </Link>
+                  </motion.li>
                </ul>
 
                {/* Drawer footer: preferences + contact */}
-               <div className="shrink-0 space-y-4 border-t border-border/60 px-5 py-5">
-                  <div className="flex items-center justify-between">
-                    {/* Language */}
-                   <Link
-                     href={otherLocalePath}
-                     lang={otherLocale}
-                     hrefLang={otherLocale}
-                     aria-label={dictionary.nav.languageLabel}
-                     className={cn(
-                       "rounded-lg py-2 text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                       otherLocale === "en"
-                         ? "text-body-xs uppercase tracking-[0.08em]"
-                         : "text-sm"
-                    )}
-                  >
-                    {dictionary.nav.switchLanguage}
-                  </Link>
-                </div>
-
+                <div className="shrink-0 space-y-4 border-t border-border/60 px-5 py-5">
                 {/* Click-to-call — primary conversion path in this market */}
                 <a
                   href={`tel:${CONTACT_INFO.phone}`}

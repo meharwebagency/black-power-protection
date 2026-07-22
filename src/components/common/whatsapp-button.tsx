@@ -46,7 +46,7 @@ export function WhatsAppButton({ locale }: WhatsAppButtonProps) {
   const whatsappUrl = `https://wa.me/${CONTACT_INFO.whatsapp.replace(/[^0-9]/g, "")}?text=${message}`;
 
   return (
-    <div className="fixed bottom-5 end-5 z-50 md:bottom-6 md:end-6">
+    <div className="fixed bottom-4 end-4 z-50 sm:bottom-5 sm:end-5 md:bottom-6 md:end-6">
       <AnimatePresence>
         {isOpen && (
           <motion.div

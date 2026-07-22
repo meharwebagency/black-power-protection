@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence, LayoutGroup, useReducedMotion } from "framer-motion";
 import { Search, X, ChevronRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { Input } from "@/components/ui/input";
 import { Pagination } from "@/components/ui/pagination";
 import { SortSelect } from "@/components/ui/filter-bar";
 import { EmptyState } from "@/components/common/states";
@@ -254,7 +253,7 @@ export function VehicleInventory({ locale }: VehicleInventoryProps) {
     <div className="min-h-screen">
       {/* ── Page masthead ── */}
       <div className="border-b border-border/60">
-        <Container size="xl" className="py-10 md:py-14">
+        <Container size="xl" className="py-4 md:py-5">
           {/* Breadcrumb */}
           <motion.nav
             initial={reduceMotion ? false : { opacity: 0 }}
@@ -272,49 +271,26 @@ export function VehicleInventory({ locale }: VehicleInventoryProps) {
             <ChevronRight className="h-3 w-3 opacity-60 rtl:rotate-180" />
             <span className="font-medium text-foreground">{t("السيارات", "Vehicles")}</span>
           </motion.nav>
-
-          {/* Title block */}
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: EASE_LUXURY, delay: 0.05 }}
-            className="mt-6 max-w-2xl"
-          >
-            <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-accent" aria-hidden />
-              <span className="text-2xs font-medium uppercase tracking-[0.22em] text-muted-foreground ltr:tracking-[0.22em] rtl:tracking-normal">
-                {t("المعرض", "The Collection")}
-              </span>
-            </div>
-            <h1 className="mt-4 font-display text-display-md font-semibold leading-[1.1] text-foreground md:text-display-lg">
-              {t("سيارات مختارة بعناية", "Curated Vehicles")}
-            </h1>
-            <p className="mt-4 text-body-md text-muted-foreground">
-              {t(
-                "تشكيلة منتقاة من السيارات الفاخرة، كل واحدة تم فحصها والتحقق منها بعناية.",
-                "A hand-selected range of premium vehicles, each inspected and verified with care."
-              )}
-            </p>
-          </motion.div>
         </Container>
       </div>
 
-      <Container size="xl" className="py-8 md:py-10">
+      <Container size="xl" className="pt-4 pb-2 md:pt-5 md:pb-3">
         {/* ── Toolbar: search + sort ── */}
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: EASE_LUXURY }}
-          className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between"
+          className="flex flex-col items-center gap-4 md:flex-row md:justify-center md:items-center md:gap-5"
         >
-          <div className="relative w-full lg:max-w-md">
-            <Search className="pointer-events-none absolute start-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
+          <div className="relative w-full max-w-md">
+            <Search className="pointer-events-none absolute start-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground transition-colors duration-200 group-focus-within:text-gold-400" />
+            <input
+              type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={t("ابحث بالماركة أو الطراز", "Search by make or model")}
               aria-label={t("ابحث عن سيارة", "Search vehicles")}
-              className="h-12 rounded-xl ps-11 pe-11 text-body-sm"
+              className="h-14 w-full rounded-2xl border border-border/60 bg-card/50 ps-12 pe-12 text-body-sm text-foreground shadow-sm backdrop-blur-sm placeholder:text-muted-foreground/50 placeholder:tracking-wide transition-all duration-300 hover:border-border hover:shadow-md focus:border-gold-400/40 focus:outline-none focus:ring-2 focus:ring-gold-400/15 focus:shadow-md"
             />
             {searchQuery && (
               <button
@@ -324,37 +300,32 @@ export function VehicleInventory({ locale }: VehicleInventoryProps) {
                   setFilters((prev) => ({ ...prev, search: undefined }));
                 }}
                 aria-label={t("مسح البحث", "Clear search")}
-                className="absolute end-3 top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                className="absolute end-3 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full text-muted-foreground transition-all duration-200 hover:bg-secondary hover:text-foreground"
               >
                 <X className="h-4 w-4" />
               </button>
             )}
           </div>
 
-          <div className="flex items-center justify-between gap-3 lg:justify-end">
-            <span className="text-body-xs text-muted-foreground lg:hidden">
-              {countLabel}
-            </span>
+          <div className="flex items-center justify-center gap-3">
+            {!isDesktop && (
+              <MobileFilterDrawer
+                filters={filters}
+                onFilterChange={handleFilterChange}
+                locale={locale}
+                resultCount={resultCount}
+              />
+            )}
             <div className="flex items-center gap-2">
-              {!isDesktop && (
-                <MobileFilterDrawer
-                  filters={filters}
-                  onFilterChange={handleFilterChange}
-                  locale={locale}
-                  resultCount={resultCount}
-                />
-              )}
-              <div className="flex items-center gap-2">
-                <span className="hidden text-body-xs text-muted-foreground sm:inline">
-                  {t("ترتيب", "Sort")}
-                </span>
-                <SortSelect
-                  options={SORT_OPTIONS.map((o) => ({ value: o.value, label: t(o.labelAr, o.label) }))}
-                  value={sortValue}
-                  onChange={handleSortChange}
-                  locale={locale}
-                />
-              </div>
+              <span className="hidden text-body-xs text-muted-foreground sm:inline">
+                {t("ترتيب", "Sort")}
+              </span>
+              <SortSelect
+                options={SORT_OPTIONS.map((o) => ({ value: o.value, label: t(o.labelAr, o.label) }))}
+                value={sortValue}
+                onChange={handleSortChange}
+                locale={locale}
+              />
             </div>
           </div>
         </motion.div>

@@ -22,10 +22,10 @@ export const createVehicleSchema = z.object({
     .positive("Price must be positive")
     .max(999_999_999.999, "Price is too high"),
   currency: z.string().length(3).default("KWD"),
-  mileage: z.number().int().min(0, "Mileage cannot be negative").max(999_999),
-  fuel_type: fuelTypeEnum,
-  transmission: transmissionEnum,
-  body_type: bodyTypeEnum,
+  mileage: z.number().int().min(0, "Mileage cannot be negative").max(999_999).optional().default(0),
+  fuel_type: fuelTypeEnum.optional().default("gasoline"),
+  transmission: transmissionEnum.optional().default("automatic"),
+  body_type: bodyTypeEnum.optional().default("sedan"),
   engine_size: z.string().max(20).optional().nullable(),
   horsepower: z
     .number()
@@ -35,8 +35,8 @@ export const createVehicleSchema = z.object({
     .optional()
     .nullable(),
   condition: vehicleConditionEnum.default("used"),
-  color: z.string().min(1, "Color is required").max(50),
-  color_ar: z.string().min(1, "Arabic color is required").max(50),
+  color: z.string().max(50).optional().default(""),
+  color_ar: z.string().max(50).optional().default(""),
   interior_color: z.string().max(50).optional().nullable(),
   interior_color_ar: z.string().max(50).optional().nullable(),
   description: z.string().max(5000).default(""),

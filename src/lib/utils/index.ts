@@ -10,11 +10,14 @@ export function formatCurrency(amount: number, locale: string = "ar-KW"): string
     style: "decimal",
     minimumFractionDigits: 0,
     maximumFractionDigits: 3,
+    numberingSystem: "latn",
   }).format(amount);
 }
 
 export function formatNumber(value: number, locale: string = "ar-KW"): string {
-  return new Intl.NumberFormat(locale).format(value);
+  return new Intl.NumberFormat(locale, {
+    numberingSystem: "latn",
+  }).format(value);
 }
 
 export function formatDate(date: string | Date, locale: string = "ar-KW"): string {

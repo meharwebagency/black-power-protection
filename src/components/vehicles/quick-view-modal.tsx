@@ -67,7 +67,7 @@ export function QuickViewModal({ vehicle, open, onClose, locale }: QuickViewModa
 
   const specs = [
     { icon: Calendar, label: locale === "ar" ? "السنة" : "Year", value: String(vehicle.year) },
-    { icon: Gauge, label: locale === "ar" ? "المسافة" : "Mileage", value: `${new Intl.NumberFormat(locale === "ar" ? "ar-KW" : "en-US").format(vehicle.mileage)} ${locale === "ar" ? "كم" : "km"}` },
+    { icon: Gauge, label: locale === "ar" ? "المسافة" : "Mileage", value: `${new Intl.NumberFormat(locale === "ar" ? "ar-KW" : "en-US", { numberingSystem: "latn" }).format(vehicle.mileage)} ${locale === "ar" ? "كم" : "km"}` },
     { icon: Fuel, label: locale === "ar" ? "الوقود" : "Fuel", value: fuelType },
     { icon: Settings2, label: locale === "ar" ? "ناقل الحركة" : "Transmission", value: transmission },
     { icon: Palette, label: locale === "ar" ? "اللون" : "Color", value: color },

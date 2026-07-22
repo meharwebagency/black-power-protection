@@ -124,7 +124,7 @@ export default function ContactPage({ params }: ContactPageProps) {
   return (
     <div className="relative">
       {/* Hero */}
-      <section className="relative overflow-hidden py-20 md:py-28">
+      <section className="relative overflow-hidden py-16 md:py-20 lg:py-28">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/50" />
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -end-40 h-[500px] w-[500px] rounded-full bg-gold-400/5 blur-3xl" />
@@ -174,37 +174,37 @@ export default function ContactPage({ params }: ContactPageProps) {
       </div>
 
       {/* Contact Cards */}
-      <section className="py-16 md:py-20">
+      <section className="py-10 md:py-16 lg:py-20">
         <Container>
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
             variants={staggerContainer}
-            className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5"
+            className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5"
           >
             {contactCards.map((card, i) => (
               <motion.div key={i} variants={fadeUp}>
                 {card.href ? (
                   <a href={card.href} target={card.href.startsWith("http") ? "_blank" : undefined} rel={card.href.startsWith("http") ? "noopener noreferrer" : undefined}>
                     <Card className="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated cursor-pointer">
-                      <CardContent className="flex flex-col items-center p-6 text-center">
-                        <div className={`mb-3 flex h-12 w-12 items-center justify-center rounded-2xl ${card.bgColor}`}>
-                          <card.icon className={`h-6 w-6 ${card.color}`} />
+                      <CardContent className="flex flex-col items-center p-3 text-center sm:p-6">
+                        <div className={`mb-2 flex h-10 w-10 items-center justify-center rounded-2xl ${card.bgColor} sm:mb-3 sm:h-12 sm:w-12`}>
+                          <card.icon className={`h-5 w-5 ${card.color} sm:h-6 sm:w-6`} />
                         </div>
-                        <h3 className="text-body-sm font-semibold text-foreground">{card.title}</h3>
-                        <p className="mt-1 text-body-xs text-muted-foreground break-all">{card.content}</p>
+                        <h3 className="text-xs font-semibold text-foreground sm:text-body-sm">{card.title}</h3>
+                        <p className="mt-0.5 text-2xs text-muted-foreground sm:text-body-xs">{card.content}</p>
                       </CardContent>
                     </Card>
                   </a>
                 ) : (
                   <Card className="h-full">
-                    <CardContent className="flex flex-col items-center p-6 text-center">
-                      <div className={`mb-3 flex h-12 w-12 items-center justify-center rounded-2xl ${card.bgColor}`}>
-                        <card.icon className={`h-6 w-6 ${card.color}`} />
+                    <CardContent className="flex flex-col items-center p-3 text-center sm:p-6">
+                      <div className={`mb-2 flex h-10 w-10 items-center justify-center rounded-2xl ${card.bgColor} sm:mb-3 sm:h-12 sm:w-12`}>
+                        <card.icon className={`h-5 w-5 ${card.color} sm:h-6 sm:w-6`} />
                       </div>
-                      <h3 className="text-body-sm font-semibold text-foreground">{card.title}</h3>
-                      <p className="mt-1 text-body-xs text-muted-foreground">{card.content}</p>
+                      <h3 className="text-xs font-semibold text-foreground sm:text-body-sm">{card.title}</h3>
+                      <p className="mt-0.5 text-2xs text-muted-foreground sm:text-body-xs">{card.content}</p>
                     </CardContent>
                   </Card>
                 )}
@@ -220,9 +220,9 @@ export default function ContactPage({ params }: ContactPageProps) {
       </div>
 
       {/* Form + Map */}
-      <section className="py-16 md:py-24">
+      <section className="py-10 md:py-16 lg:py-24">
         <Container>
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10">
             {/* Contact Form */}
             <motion.div
               initial="hidden"

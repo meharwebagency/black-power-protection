@@ -102,6 +102,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    overscroll-behavior-x: none;
   }
 
   a:not([class*="text-"]) {
@@ -367,6 +368,18 @@
       transform: scale(0.98);
       transition: transform 0.1s;
     }
+  }
+
+  /* ── Mobile Responsive Overrides ── */
+  @media (max-width: 640px) {
+    .mobile-full-width {
+      width: 100% !important;
+    }
+  }
+
+  /* Prevent any element from causing horizontal scroll on mobile */
+  .overflow-x-contain {
+    overflow-x: clip;
   }
 }
 

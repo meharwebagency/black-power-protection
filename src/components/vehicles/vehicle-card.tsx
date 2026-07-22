@@ -31,7 +31,7 @@ export function VehicleCard({ vehicle, locale, className }: VehicleCardProps) {
   const primaryImage =
     vehicle.images?.find((img) => img.isPrimary) || vehicle.images?.[0];
 
-  const mileage = new Intl.NumberFormat(isAr ? "ar-KW" : "en-US").format(
+  const mileage = new Intl.NumberFormat(isAr ? "ar-KW" : "en-US", { numberingSystem: "latn" }).format(
     vehicle.mileage
   );
 

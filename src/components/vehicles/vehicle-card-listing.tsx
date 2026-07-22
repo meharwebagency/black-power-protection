@@ -63,7 +63,7 @@ export function VehicleCardListing({ vehicle, locale, onQuickView }: VehicleCard
   const primaryImage =
     vehicle.images?.find((img) => img.isPrimary) || vehicle.images?.[0];
 
-  const mileage = new Intl.NumberFormat(isAr ? "ar-KW" : "en-US").format(
+  const mileage = new Intl.NumberFormat(isAr ? "ar-KW" : "en-US", { numberingSystem: "latn" }).format(
     vehicle.mileage
   );
 

@@ -27,6 +27,7 @@ export function SearchBarSection({ locale }: SearchBarSectionProps) {
   const [selectedModel, setSelectedModel] = React.useState("");
   const [maxPrice, setMaxPrice] = React.useState("");
   const [activeTab, setActiveTab] = React.useState(0);
+  const [mobileQuery, setMobileQuery] = React.useState("");
   const CONDITION_TABS: (string | undefined)[] = [undefined, "new", "used"];
 
   /* Live inventory pool — powers the Models dropdown (distinct models,
@@ -85,8 +86,15 @@ export function SearchBarSection({ locale }: SearchBarSectionProps) {
     router.push(`/${locale}/vehicles?${params.toString()}`);
   };
 
+  const handleMobileSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const params = new URLSearchParams();
+    if (mobileQuery.trim()) params.set("search", mobileQuery.trim());
+    router.push(`/${locale}/vehicles?${params.toString()}`);
+  };
+
   const fmt = (n: number) =>
-    new Intl.NumberFormat(isAr ? "ar-KW" : "en-US").format(n);
+    new Intl.NumberFormat(isAr ? "ar-KW" : "en-US", { numberingSystem: "latn" }).format(n);
 
   const selectedModelLabel = selectedModel
     ? (isAr && models.find((m) => m.value === selectedModel)?.labelAr) || selectedModel
@@ -95,6 +103,31 @@ export function SearchBarSection({ locale }: SearchBarSectionProps) {
   return (
     <section className="relative z-20 -mt-6 bg-[#000000] pb-4 md:-mt-8 md:pb-6">
       <Container size="xl">
+        {/* ── Mobile search bar ── */}
+        <form
+          onSubmit={handleMobileSearch}
+          role="search"
+          aria-label={t("البحث في السيارات", "Search vehicles")}
+          className="block px-4 pt-4 lg:hidden"
+        >
+          <div className="relative">
+            <Search
+              aria-hidden="true"
+              strokeWidth={2}
+              className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+            />
+            <input
+              type="text"
+              value={mobileQuery}
+              onChange={(e) => setMobileQuery(e.target.value)}
+              placeholder={t("ابحث عن سيارات...", "Search vehicles...")}
+              aria-label={t("ابحث عن سيارات", "Search vehicles")}
+              className="h-11 w-full rounded-xl border border-border bg-card ps-10 pe-4 text-body-sm text-foreground shadow-sm placeholder:text-muted-foreground/60 transition-all duration-200 focus:border-gold-400/40 focus:outline-none focus:ring-2 focus:ring-gold-400/15 focus:shadow-md"
+            />
+          </div>
+        </form>
+
+        {/* ── Desktop premium search bar ── */}
         <motion.form
           onSubmit={handleSearch}
           role="search"
@@ -107,6 +140,7 @@ export function SearchBarSection({ locale }: SearchBarSectionProps) {
               : { duration: 0.8, ease: easings.luxury, delay: 0.2 }
           }
           className={cn(
+            "hidden lg:block",
             "rounded-2xl bg-[#111111] text-white",
             "border border-white/[0.08]",
             "shadow-[0_24px_60px_-12px_rgba(0,0,0,0.55)]",
@@ -203,7 +237,8 @@ export function SearchBarSection({ locale }: SearchBarSectionProps) {
             <button
               type="submit"
               className={cn(
-                "inline-flex h-[72px] items-center justify-center gap-2.5 rounded-xl px-10",
+                "inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-xl px-6",
+                "md:h-[72px] md:w-auto md:px-10",
                 "bg-gradient-to-r from-gold-700 to-gold-500 text-[#1a1408] font-semibold",
                 isAr ? "text-sm" : "text-body-sm uppercase tracking-[0.08em]",
                 "transition-all duration-300 hover:brightness-110 active:scale-[0.98]",

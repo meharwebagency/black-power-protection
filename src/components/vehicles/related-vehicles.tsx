@@ -54,7 +54,7 @@ export function RelatedVehicles({ currentVehicle, locale }: RelatedVehiclesProps
   if (related.length === 0) return null;
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-10 md:py-16 lg:py-24">
       <Container size="xl">
         {/* Header */}
         <motion.div
@@ -62,7 +62,7 @@ export function RelatedVehicles({ currentVehicle, locale }: RelatedVehiclesProps
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease: EASE_LUXURY }}
-          className="mb-10 flex items-end justify-between gap-4"
+          className="mb-6 sm:mb-10 flex items-end justify-between gap-4"
         >
           <div>
             <div className="flex items-center gap-3">

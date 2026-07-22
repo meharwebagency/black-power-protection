@@ -54,17 +54,17 @@ export default function VehicleDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen pt-24">
+      <div className="min-h-screen pt-16 sm:pt-24">
         <Container size="xl">
-          <div className="mt-6 grid grid-cols-1 gap-8 md:mt-8 lg:grid-cols-12 lg:gap-12">
-            <div className="space-y-6 lg:col-span-7">
-              <div className="aspect-[3/2] w-full animate-pulse rounded-2xl bg-muted/70" />
+          <div className="mt-4 grid grid-cols-1 gap-6 sm:mt-6 sm:gap-8 md:mt-8 lg:grid-cols-12 lg:gap-12">
+            <div className="space-y-4 sm:space-y-6 lg:col-span-7">
+              <div className="aspect-[3/2] w-full animate-pulse rounded-xl sm:rounded-2xl bg-muted/70" />
               <div className="h-6 w-2/3 animate-pulse rounded bg-muted/70" />
               <div className="h-4 w-1/2 animate-pulse rounded bg-muted/50" />
               <div className="h-40 w-full animate-pulse rounded-xl bg-muted/60" />
             </div>
             <div className="lg:col-span-5">
-              <div className="h-72 w-full animate-pulse rounded-2xl bg-muted/60" />
+              <div className="h-72 w-full animate-pulse rounded-xl sm:rounded-2xl bg-muted/60" />
             </div>
           </div>
         </Container>
@@ -74,7 +74,7 @@ export default function VehicleDetailPage() {
 
   if (!vehicle) {
     return (
-      <div className="min-h-screen pt-24">
+      <div className="min-h-screen pt-16 sm:pt-24">
         <Container size="xl">
           <div className="flex min-h-[55vh] flex-col items-center justify-center text-center">
             <div className="flex items-center gap-3">
@@ -114,7 +114,7 @@ export default function VehicleDetailPage() {
   ];
 
   return (
-    <div className="min-h-screen pb-8 pt-20 md:pt-24">
+    <div className="min-h-screen pb-6 pt-16 sm:pt-20 md:pt-24 lg:pb-8">
       <Container size="xl">
         {/* Breadcrumbs */}
         <motion.div

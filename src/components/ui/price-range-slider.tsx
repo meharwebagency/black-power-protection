@@ -71,7 +71,7 @@ export function PriceRangeSlider({
   }, []);
 
   const formatPrice = (v: number) =>
-    new Intl.NumberFormat(locale === "ar" ? "ar-KW" : "en-US").format(v);
+    new Intl.NumberFormat(locale === "ar" ? "ar-KW" : "en-US", { numberingSystem: "latn" }).format(v);
 
   return (
     <div className={cn("w-full", className)}>
