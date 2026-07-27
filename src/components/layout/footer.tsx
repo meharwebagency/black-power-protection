@@ -4,8 +4,9 @@ import * as React from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Separator } from "@/components/ui/separator";
-import { CONTACT_INFO, SOCIAL_LINKS, NAV_LINKS, LOGO_URL } from "@/lib/constants";
-import { Instagram, Twitter, Facebook, Phone, Mail, MapPin } from "lucide-react";
+import { CONTACT_INFO, SOCIAL_LINKS, NAV_LINKS } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+import { Twitter, Facebook, Phone, Mail } from "lucide-react";
 import type { Locale } from "@/types";
 
 interface FooterProps {
@@ -46,20 +47,12 @@ export function Footer({ locale, dictionary }: FooterProps) {
           <div className="lg:col-span-4">
             <Link href={`/${locale}`} className="group inline-block">
               <div className="flex items-center gap-3">
-                <div className="relative h-10 w-10 overflow-hidden rounded-full ring-2 ring-gold-400/20 transition-all duration-300 group-hover:ring-gold-400/40">
-                  <img
-                    src={LOGO_URL}
-                    alt="Black Power Protection"
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
                 <div className="flex flex-col">
-                  <span className="font-display text-xl font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
-                    {locale === "ar" ? "بلاك باور" : "BLACK POWER"}
-                  </span>
-                  <span className="text-2xs font-semibold uppercase tracking-[0.35em] text-gold-600 dark:text-gold-400">
-                    {locale === "ar" ? "بروتكشن" : "PROTECTION"}
+                  <span className={cn(
+                    "font-display text-xl text-foreground transition-colors group-hover:text-primary",
+                    locale === "ar" ? "font-bold" : "font-medium"
+                  )}>
+                    {locale === "ar" ? "الحصان الأبيض" : "White Horse"}
                   </span>
                 </div>
               </div>
@@ -71,7 +64,6 @@ export function Footer({ locale, dictionary }: FooterProps) {
             {/* Social Links */}
             <div className="mt-6 flex gap-2">
               {[
-                { href: SOCIAL_LINKS.instagram, icon: Instagram, label: "Instagram" },
                 SOCIAL_LINKS.twitter ? { href: SOCIAL_LINKS.twitter, icon: Twitter, label: "Twitter" } : null,
                 SOCIAL_LINKS.facebook ? { href: SOCIAL_LINKS.facebook, icon: Facebook, label: "Facebook" } : null,
               ].filter(Boolean).map((item) => item && (
@@ -90,7 +82,7 @@ export function Footer({ locale, dictionary }: FooterProps) {
           </div>
 
           {/* Quick Links */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <h3 className="mb-4 text-label-md uppercase tracking-wider text-foreground">
               {dictionary.footer.quickLinks}
             </h3>
@@ -127,15 +119,11 @@ export function Footer({ locale, dictionary }: FooterProps) {
                 <Mail className="h-4 w-4 shrink-0 text-gold-600 dark:text-gold-400" />
                 <span className="break-all">{CONTACT_INFO.email}</span>
               </a>
-              <div className="flex items-start gap-3 text-body-sm text-muted-foreground">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-600 dark:text-gold-400" />
-                {locale === "ar" ? CONTACT_INFO.addressAr : CONTACT_INFO.address}
-              </div>
             </div>
           </div>
 
           {/* Working Hours */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-2">
             <h3 className="mb-4 text-label-md uppercase tracking-wider text-foreground">
               {dictionary.contact.workingHours}
             </h3>

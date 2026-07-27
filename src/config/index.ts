@@ -1,5 +1,5 @@
 export const SITE_CONFIG = {
-  name: process.env.NEXT_PUBLIC_APP_NAME || "BLACK POWER PROTECTION",
+  name: process.env.NEXT_PUBLIC_APP_NAME || "White Horse",
   url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
   description: process.env.NEXT_PUBLIC_APP_DESCRIPTION || "Premium Luxury Car Marketplace in Kuwait",
 } as const;

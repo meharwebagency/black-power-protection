@@ -19,7 +19,8 @@ import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { CONTACT_INFO, LOGO_URL } from "@/lib/constants";
+import { CONTACT_INFO } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 import { staggerContainer, fadeUp } from "@/lib/motion";
 import { WhatsAppButton } from "@/components/common/whatsapp-button";
 import { ScrollToTop } from "@/components/common/scroll-to-top";
@@ -101,9 +102,12 @@ export default function AboutPage({ params }: AboutPageProps) {
 
             <motion.h1
               variants={fadeUp}
-              className="font-display text-display-sm md:text-display-lg font-bold text-foreground"
+              className={cn(
+                "font-display text-display-sm md:text-display-lg text-foreground",
+                isArabic ? "font-bold" : "font-medium"
+              )}
             >
-              {isArabic ? "بلاك باور بروتكشن" : "BLACK POWER PROTECTION"}
+              {isArabic ? "الحصان الأبيض" : "White Horse"}
             </motion.h1>
 
             <motion.p
@@ -145,8 +149,8 @@ export default function AboutPage({ params }: AboutPageProps) {
               </h2>
               <p className="mt-4 text-body-md leading-relaxed text-muted-foreground">
                 {isArabic
-                  ? "تأسست بلاك باور بروتكشن لتكون الوجهة الأولى لعشاق السيارات الفاخرة في الكويت. نؤمن بأن كل عميل يستحق أفضل تجربة عند البحث عن سيارته المثالية."
-                  : "BLACK POWER PROTECTION was founded to be the premier destination for luxury car enthusiasts in Kuwait. We believe every client deserves the best experience when searching for their perfect vehicle."}
+                  ? "تأسست الحصان الأبيض لتكون الوجهة الأولى لعشاق السيارات الفاخرة في الكويت. نؤمن بأن كل عميل يستحق أفضل تجربة عند البحث عن سيارته المثالية."
+                  : "White Horse was founded to be the premier destination for luxury car enthusiasts in Kuwait. We believe every client deserves the best experience when searching for their perfect vehicle."}
               </p>
               <p className="mt-4 text-body-md leading-relaxed text-muted-foreground">
                 {isArabic
@@ -159,11 +163,12 @@ export default function AboutPage({ params }: AboutPageProps) {
             <motion.div variants={fadeUp} className="flex justify-center">
               <div className="relative flex aspect-square w-full max-w-[256px] items-center justify-center rounded-3xl bg-gradient-to-br from-secondary/50 to-secondary p-6 sm:p-8 ring-1 ring-border">
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-gold-400/5 to-transparent" />
-                <img
-                  src={LOGO_URL}
-                  alt="Black Power Protection"
-                  className="relative h-28 w-28 sm:h-36 sm:w-36 md:h-40 md:w-40 object-contain"
-                />
+                <span className={cn(
+                  "relative font-display text-display-sm md:text-display-md text-foreground",
+                  isArabic ? "font-bold" : "font-medium"
+                )}>
+                  {isArabic ? "الحصان الأبيض" : "White Horse"}
+                </span>
               </div>
             </motion.div>
           </motion.div>

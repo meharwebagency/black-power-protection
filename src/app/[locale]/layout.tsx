@@ -57,24 +57,12 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "AutoDealer",
-              name: "BLACK POWER PROTECTION",
-              alternateName: "بلاك باور بروتيكشن",
+              name: "White Horse",
+              alternateName: "الحصان الأبيض",
               description: "Premium luxury car marketplace in Kuwait",
               url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
-              telephone: "+96565577880",
-              address: {
-                "@type": "PostalAddress",
-                addressCountry: "KW",
-                addressLocality: "Kuwait",
-              },
-              geo: {
-                "@type": "GeoCoordinates",
-                latitude: 29.37,
-                longitude: 47.97,
-              },
-              sameAs: [
-                "https://www.instagram.com/black.power.protection.q8",
-              ],
+              telephone: "+96566466100",
+              sameAs: [],
               openingHoursSpecification: {
                 "@type": "OpeningHoursSpecification",
                 dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],

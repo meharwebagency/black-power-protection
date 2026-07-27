@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, Mail } from "lucide-react";
+import { Phone, Clock, Mail } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { CONTACT_INFO } from "@/lib/constants";
 import { staggerContainer, fadeUp } from "@/lib/motion";
@@ -13,8 +13,6 @@ interface ContactMapSectionProps {
 }
 
 export function ContactMapSection({ locale }: ContactMapSectionProps) {
-  const [mapLoaded, setMapLoaded] = React.useState(false);
-
   return (
     <section className="pt-3 pb-10 md:pt-4 md:pb-16">
       <Container>
@@ -30,18 +28,12 @@ export function ContactMapSection({ locale }: ContactMapSectionProps) {
               {locale === "ar" ? "تواصل معنا" : "Contact Us"}
             </span>
             <h2 className="font-display text-display-xs md:text-display-sm font-bold text-foreground">
-              {locale === "ar" ? "زورنا في الكويت" : "Visit Us in Kuwait"}
+              {locale === "ar" ? "معلومات التواصل" : "Get in Touch"}
             </h2>
           </motion.div>
 
-          {/* Contact cards - shown on mobile above map */}
-          <motion.div variants={fadeUp} className="flex flex-col gap-3 mb-8 lg:hidden">
-            <ContactCard
-              icon={MapPin}
-              title={locale === "ar" ? "العنوان" : "Address"}
-              content={locale === "ar" ? CONTACT_INFO.addressAr : CONTACT_INFO.address}
-              locale={locale}
-            />
+          {/* Contact cards */}
+          <motion.div variants={fadeUp} className="flex flex-col gap-3 sm:flex-row sm:justify-center">
             <ContactCard
               icon={Phone}
               title={locale === "ar" ? "الهاتف" : "Phone"}
@@ -63,64 +55,6 @@ export function ContactMapSection({ locale }: ContactMapSectionProps) {
               locale={locale}
             />
           </motion.div>
-
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-5">
-            {/* Map */}
-            <motion.div variants={fadeUp} className="overflow-hidden rounded-2xl border border-border lg:col-span-3 relative">
-              {!mapLoaded && (
-                <div className="absolute inset-0 flex items-center justify-center bg-secondary/50 z-10">
-                  <div className="flex flex-col items-center gap-3">
-                    <div className="h-8 w-8 animate-spin rounded-full border-2 border-gold-500 border-t-transparent" />
-                    <span className="text-body-xs text-muted-foreground">
-                      {locale === "ar" ? "جاري تحميل الخريطة..." : "Loading map..."}
-                    </span>
-                  </div>
-                </div>
-              )}
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13846.891906079965!2d47.97!3d29.37!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fc535c4a7c1b0e3%3A0x1234567890abcdef!2sKuwait!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
-                width="100%"
-                height="400"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="h-full min-h-[400px] w-full"
-                title="Black Power Protection Location"
-                onLoad={() => setMapLoaded(true)}
-              />
-            </motion.div>
-
-            {/* Contact info - desktop only */}
-            <motion.div variants={fadeUp} className="hidden lg:flex lg:flex-col lg:gap-4 lg:col-span-2">
-              <ContactCard
-                icon={MapPin}
-                title={locale === "ar" ? "العنوان" : "Address"}
-                content={locale === "ar" ? CONTACT_INFO.addressAr : CONTACT_INFO.address}
-                locale={locale}
-              />
-              <ContactCard
-                icon={Phone}
-                title={locale === "ar" ? "الهاتف" : "Phone"}
-                content={CONTACT_INFO.phoneFormatted}
-                href={`tel:${CONTACT_INFO.phone}`}
-                locale={locale}
-              />
-              <ContactCard
-                icon={Mail}
-                title={locale === "ar" ? "البريد الإلكتروني" : "Email"}
-                content={CONTACT_INFO.email}
-                href={`mailto:${CONTACT_INFO.email}`}
-                locale={locale}
-              />
-              <ContactCard
-                icon={Clock}
-                title={locale === "ar" ? "ساعات العمل" : "Working Hours"}
-                content={locale === "ar" ? CONTACT_INFO.workingHoursAr : CONTACT_INFO.workingHours}
-                locale={locale}
-              />
-            </motion.div>
-          </div>
         </motion.div>
       </Container>
     </section>

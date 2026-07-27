@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Phone, MessageCircle, MapPin, Clock, ExternalLink, ShieldCheck } from "lucide-react";
+import { Phone, MessageCircle, Clock, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CONTACT_INFO } from "@/lib/constants";
 import type { Vehicle } from "@/types/vehicle";
@@ -70,15 +70,6 @@ export function StickyContactCard({ vehicle, locale }: StickyContactCardProps) {
           <Button variant="outline" size="lg" fullWidth className="gap-2">
             <Phone className="h-4 w-4" />
             <span dir="ltr">{CONTACT_INFO.phoneFormatted}</span>
-          </Button>
-        </a>
-
-        {/* Google Maps */}
-        <a href={CONTACT_INFO.googleMaps} target="_blank" rel="noopener noreferrer" className="block">
-          <Button variant="ghost" size="lg" fullWidth className="gap-2 text-muted-foreground hover:text-foreground">
-            <MapPin className="h-4 w-4" />
-            {t("موقعنا على الخريطة", "View on Map")}
-            <ExternalLink className="h-3 w-3 opacity-50" />
           </Button>
         </a>
       </div>

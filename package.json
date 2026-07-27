@@ -2,7 +2,7 @@
   "name": "bpp-car-marketplace",
   "version": "1.0.0",
   "private": true,
-  "description": "BLACK POWER PROTECTION - Premium Luxury Car Marketplace in Kuwait",
+  "description": "White Horse - Premium Luxury Car Marketplace in Kuwait",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

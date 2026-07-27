@@ -1,8 +1,8 @@
 import type { AppConfig, NavLink } from "@/types";
 
 export const APP_CONFIG: AppConfig = {
-  name: "BLACK POWER PROTECTION",
-  nameAr: "بلاك باور بروتكشن",
+  name: "White Horse",
+  nameAr: "الحصان الأبيض",
   defaultLocale: "ar",
   locales: ["ar", "en"],
   description: "Premium Luxury Car Marketplace in Kuwait",
@@ -114,50 +114,45 @@ export const CURRENCY = {
 };
 
 export const CONTACT_INFO = {
-  phone: "+96565577880",
-  phoneFormatted: "+965 6557 7880",
-  email: "info@bpp-kuwait.com",
-  address: "Kuwait",
-  addressAr: "الكويت",
+  phone: "+96566466100",
+  phoneFormatted: "+965 6646 6100",
+  email: "info@whitehorse-kuwait.com",
   workingHours: "Sun - Thu: 9:00 AM - 6:00 PM",
   workingHoursAr: "الأحد - الخميس: 9:00 صباحاً - 6:00 مساءً",
-  whatsapp: "+96565577880",
-  googleMaps: "https://maps.app.goo.gl/FGiWpm2383ff7CgQ9",
+  whatsapp: "+96566466100",
 };
 
 export const SOCIAL_LINKS = {
-  instagram: "https://www.instagram.com/black.power.protection.q8",
   twitter: "",
   facebook: "",
   tiktok: "",
 };
 
-export const LOGO_URL =
-  "https://res.cloudinary.com/dtsms0hhz/image/upload/cropped_circle_image_2_uwoybi.png";
+export const LOGO_URL = "";
 
 export const META_DEFAULTS = {
   title: {
-    ar: "بلاك باور بروتكشن | سوق السيارات الفاخرة في الكويت",
-    en: "BLACK POWER PROTECTION | Premium Luxury Car Marketplace in Kuwait",
+    ar: "الحصان الأبيض | سوق السيارات الفاخرة في الكويت",
+    en: "White Horse | Premium Luxury Car Marketplace in Kuwait",
   },
   description: {
-    ar: "اكتشف أفضل السيارات الفاخرة والفاخرة في الكويت. سوق السيارات المميز من بلاك باور بروتكشن.",
-    en: "Discover the finest luxury and premium cars in Kuwait. A distinguished car market from BLACK POWER PROTECTION.",
+    ar: "اكتشف أفضل السيارات الفاخرة في الكويت. سوق السيارات المميز من الحصان الأبيض.",
+    en: "Discover the finest luxury and premium cars in Kuwait. A distinguished car market from White Horse.",
   },
   keywords: {
     ar: [
       "سيارات فاخرة",
       "سيارات مستعملة",
       "الكويت",
-      "بلاك باور بروتكشن",
-      "سيارات مерسيديس",
+      "الحصان الأبيض",
+      "سيارات مرسيديس",
       "سيارات بي ام دبليو",
     ],
     en: [
       "luxury cars",
       "used cars",
       "Kuwait",
-      "BLACK POWER PROTECTION",
+      "White Horse",
       "Mercedes",
       "BMW",
     ],

@@ -3,34 +3,34 @@ import "@/styles/globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "BLACK POWER PROTECTION | Premium Luxury Car Marketplace in Kuwait",
-    template: "%s | BLACK POWER PROTECTION",
+    default: "White Horse | Premium Luxury Car Marketplace in Kuwait",
+    template: "%s | White Horse",
   },
   description:
-    "Discover the finest luxury and premium cars in Kuwait. A distinguished car market from BLACK POWER PROTECTION.",
-  keywords: ["luxury cars", "used cars", "Kuwait", "BLACK POWER PROTECTION", "premium vehicles", "سيارات فاخرة", "كويت"],
-  authors: [{ name: "BLACK POWER PROTECTION" }],
-  creator: "BLACK POWER PROTECTION",
+    "Discover the finest luxury and premium cars in Kuwait. A distinguished car market from White Horse.",
+  keywords: ["luxury cars", "used cars", "Kuwait", "White Horse", "premium vehicles", "سيارات فاخرة", "كويت"],
+  authors: [{ name: "White Horse" }],
+  creator: "White Horse",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
   openGraph: {
     type: "website",
     locale: "ar_KW",
     alternateLocale: "en_US",
-    siteName: "BLACK POWER PROTECTION",
-    title: "BLACK POWER PROTECTION | Premium Luxury Car Marketplace in Kuwait",
+    siteName: "White Horse",
+    title: "White Horse | Premium Luxury Car Marketplace in Kuwait",
     description: "Discover the finest luxury and premium cars in Kuwait.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "BLACK POWER PROTECTION - Luxury Cars Kuwait",
+        alt: "White Horse - Luxury Cars Kuwait",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "BLACK POWER PROTECTION | Premium Luxury Car Marketplace in Kuwait",
+    title: "White Horse | Premium Luxury Car Marketplace in Kuwait",
     description: "Discover the finest luxury and premium cars in Kuwait.",
     images: ["/og-image.jpg"],
   },

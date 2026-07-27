@@ -59,16 +59,9 @@ export function WhatsAppButton({ locale }: WhatsAppButtonProps) {
             {/* Header */}
             <div className="bg-[#25D366] p-4">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-white/20">
-                  <img
-                    src="https://res.cloudinary.com/dtsms0hhz/image/upload/cropped_circle_image_2_uwoybi.png"
-                    alt="BPP"
-                    className="h-full w-full object-cover"
-                  />
-                </div>
                 <div className="min-w-0">
                   <p className="text-body-sm font-bold text-white">
-                    {locale === "ar" ? "بلاك باور بروتيكشن" : "Black Power Protection"}
+                    {locale === "ar" ? "الحصان الأبيض" : "White Horse"}
                   </p>
                   <p className="text-2xs text-white/80">
                     {locale === "ar" ? "عادةً يرد خلال دقائق" : "Usually replies within minutes"}

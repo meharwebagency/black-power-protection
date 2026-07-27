@@ -62,7 +62,7 @@ export function debounce<T extends (...args: unknown[]) => unknown>(
 }
 
 export function generateMetaTitle(pageTitle: string, locale: string): string {
-  const siteName = locale === "ar" ? "بلاك باور بروتكشن" : "BLACK POWER PROTECTION";
+  const siteName = locale === "ar" ? "الحصان الأبيض" : "White Horse";
   const separator = locale === "ar" ? " | " : " | ";
   return `${pageTitle}${separator}${siteName}`;
 }

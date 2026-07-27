@@ -8,7 +8,7 @@ import { Menu, X, Search, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
-import { NAV_LINKS, CONTACT_INFO, LOGO_URL } from "@/lib/constants";
+import { NAV_LINKS, CONTACT_INFO } from "@/lib/constants";
 import { easings } from "@/lib/motion";
 import type { Locale } from "@/types";
 
@@ -150,35 +150,15 @@ export function Header({ locale, dictionary }: HeaderProps) {
               className="group flex min-w-0 items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg"
               aria-label={dictionary.common.appName}
             >
-              <img
-                src={LOGO_URL}
-                alt=""
-                width={40}
-                height={40}
-                loading="eager"
-                className={cn(
-                  "shrink-0 rounded-full object-cover transition-all duration-500 ease-luxury",
-                  scrolled ? "h-8 w-8" : "h-9 w-9 md:h-10 md:w-10"
-                )}
-              />
               <span className="flex min-w-0 flex-col leading-none">
                 <span
                   className={cn(
-                    "truncate font-display font-semibold text-white transition-colors duration-200",
-                    "text-sm md:text-base",
-                    !isAr && "uppercase tracking-[0.14em]"
+                    "font-display text-white transition-colors duration-200",
+                    "text-base",
+                    isAr ? "font-bold" : "font-medium"
                   )}
                 >
-                  {t("بلاك باور", "Black Power")}
-                </span>
-                <span
-                  className={cn(
-                    "truncate text-2xs text-white/60",
-                    "mt-1",
-                    !isAr && "uppercase tracking-[0.3em]"
-                  )}
-                >
-                  {t("بروتكشن", "Protection")}
+                    {t("الحصان الأبيض", "White Horse")}
                 </span>
               </span>
             </Link>
@@ -335,14 +315,14 @@ export function Header({ locale, dictionary }: HeaderProps) {
              >
                {/* Drawer header */}
                <div className="flex h-18 shrink-0 items-center justify-between border-b border-border/60 px-5">
-                 <span
-                   className={cn(
-                     "font-display text-sm font-semibold text-foreground",
-                     !isAr && "uppercase tracking-[0.14em]"
-                   )}
-                 >
-                   {t("بلاك باور", "Black Power")}
-                 </span>
+                   <span
+                     className={cn(
+                       "font-display text-sm text-foreground",
+                       isAr ? "font-bold" : "font-medium"
+                     )}
+                   >
+                  {t("الحصان الأبيض", "White Horse")}
+                  </span>
                  <Button
                    variant="ghost"
                    size="icon"

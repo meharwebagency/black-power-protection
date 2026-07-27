@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "BLACK POWER PROTECTION",
+    "appName": "White Horse",
     "home": "Home",
     "vehicles": "Vehicles",
     "about": "About",
@@ -94,15 +94,15 @@
   },
   "about": {
     "title": "About Us",
-    "subtitle": "About BLACK POWER PROTECTION",
+    "subtitle": "About White Horse",
     "description": "We offer the finest luxury cars in Kuwait with world-class standards",
     "hero": {
-      "title": "BLACK POWER PROTECTION",
+      "title": "White Horse",
       "subtitle": "Experts in Kuwait's Luxury Car Market"
     },
     "story": {
       "title": "Our Story",
-      "paragraph1": "BLACK POWER PROTECTION was founded to be the premier destination for luxury car enthusiasts in Kuwait. We believe every client deserves the best experience when searching for their perfect vehicle.",
+      "paragraph1": "White Horse was founded to be the premier destination for luxury car enthusiasts in Kuwait. We believe every client deserves the best experience when searching for their perfect vehicle.",
       "paragraph2": "With over 10 years of experience in the luxury car market, we offer an exclusive collection of the world's finest brands with guaranteed quality and complete transparency in all our dealings."
     },
     "mission": {
@@ -179,11 +179,11 @@
   },
   "seo": {
     "home": {
-      "title": "BLACK POWER PROTECTION | Premium Luxury Car Marketplace in Kuwait",
-      "description": "Discover the finest luxury and premium cars in Kuwait. A distinguished car market from BLACK POWER PROTECTION."
+      "title": "White Horse | Premium Luxury Car Marketplace in Kuwait",
+      "description": "Discover the finest luxury and premium cars in Kuwait. A distinguished car market from White Horse."
     },
     "vehicles": {
-      "title": "Vehicles | BLACK POWER PROTECTION",
+      "title": "Vehicles | White Horse",
       "description": "Browse our exclusive collection of luxury vehicles in Kuwait. Mercedes, BMW, Audi and more."
     }
   },

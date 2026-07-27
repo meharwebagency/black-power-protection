@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { loginSchema, type LoginInput } from "@/lib/validation/auth.schema";
 import { createClient } from "@/lib/supabase/client";
-import { LOGO_URL } from "@/lib/constants";
+import { CONTACT_INFO } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { fadeUp } from "@/lib/motion";
@@ -88,11 +88,9 @@ export default function LoginPage({ params }: LoginPageProps) {
         {/* Logo */}
         <div className="mb-8 text-center">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 p-2">
-            <img
-              src={LOGO_URL}
-              alt="BPP"
-              className="h-full w-full object-contain"
-            />
+            <span className="font-display text-lg font-medium text-primary">
+              WH
+            </span>
           </div>
           <h1 className="font-display text-display-xs font-bold text-foreground">
             {isArabic ? "لوحة التحكم" : "Admin Panel"}
@@ -186,8 +184,8 @@ export default function LoginPage({ params }: LoginPageProps) {
         {/* Footer */}
         <p className="mt-6 text-center text-body-xs text-muted-foreground">
           {isArabic
-            ? "بلاك باور بروتكشن © 2025"
-            : "BLACK POWER PROTECTION © 2025"}
+            ? "الحصان الأبيض © 2025"
+            : "White Horse © 2025"}
         </p>
       </motion.div>
     </div>

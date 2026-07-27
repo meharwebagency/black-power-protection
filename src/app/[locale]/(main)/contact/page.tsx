@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import {
   Phone,
   Mail,
-  MapPin,
   Clock,
   MessageCircle,
   Send,
@@ -20,7 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { CONTACT_INFO, LOGO_URL } from "@/lib/constants";
+import { CONTACT_INFO } from "@/lib/constants";
 import { staggerContainer, fadeUp } from "@/lib/motion";
 import { WhatsAppButton } from "@/components/common/whatsapp-button";
 import { ScrollToTop } from "@/components/common/scroll-to-top";
@@ -104,14 +103,6 @@ export default function ContactPage({ params }: ContactPageProps) {
       bgColor: "bg-emerald-600/10",
     },
     {
-      icon: MapPin,
-      title: isArabic ? "العنوان" : "Address",
-      content: isArabic ? CONTACT_INFO.addressAr : CONTACT_INFO.address,
-      href: CONTACT_INFO.googleMaps,
-      color: "text-amber-500",
-      bgColor: "bg-amber-500/10",
-    },
-    {
       icon: Clock,
       title: isArabic ? "ساعات العمل" : "Working Hours",
       content: isArabic ? CONTACT_INFO.workingHoursAr : CONTACT_INFO.workingHours,
@@ -181,7 +172,7 @@ export default function ContactPage({ params }: ContactPageProps) {
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
             variants={staggerContainer}
-            className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5"
+            className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4"
           >
             {contactCards.map((card, i) => (
               <motion.div key={i} variants={fadeUp}>
@@ -350,54 +341,30 @@ export default function ContactPage({ params }: ContactPageProps) {
               )}
             </motion.div>
 
-            {/* Map */}
+            {/* Quick contact buttons */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.1 }}
               variants={staggerContainer}
+              className="flex flex-col gap-3"
             >
-              <motion.div variants={fadeUp}>
-                <h2 className="font-display text-display-xs font-bold text-foreground">
-                  {isArabic ? "موقعنا" : "Our Location"}
-                </h2>
-                <p className="mt-2 text-body-sm text-muted-foreground">
-                  {isArabic ? "الكويت" : "Kuwait"}
-                </p>
-              </motion.div>
-
-              <motion.div variants={fadeUp} className="mt-8 overflow-hidden rounded-2xl border border-border">
-                <div className="relative aspect-[4/3] w-full bg-secondary/50">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3477.8!2d47.97!3d29.37!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDIyJzEyLjAiTiA0N8KwNTgnMTIuMCJF!5e0!3m2!1sen!2skw!4v1700000000000"
-                    className="absolute inset-0 h-full w-full border-0"
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title={isArabic ? "موقع بلاك باور بروتكشن" : "Black Power Protection Location"}
-                  />
-                </div>
-              </motion.div>
-
-              {/* Quick contact buttons */}
-              <motion.div variants={fadeUp} className="mt-6 flex flex-col gap-3">
-                <a
-                  href={`https://wa.me/${CONTACT_INFO.whatsapp.replace(/[^0-9]/g, "")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button variant="outline" className="w-full justify-start gap-3" size="lg">
-                    <MessageCircle className="h-5 w-5 text-emerald-600" />
-                    {isArabic ? "تواصل عبر واتساب" : "Chat on WhatsApp"}
-                  </Button>
-                </a>
-                <a href={`tel:${CONTACT_INFO.phone}`}>
-                  <Button variant="outline" className="w-full justify-start gap-3" size="lg">
-                    <Phone className="h-5 w-5 text-primary" />
-                    {isArabic ? "اتصل الآن" : "Call Now"}
-                  </Button>
-                </a>
-              </motion.div>
+              <a
+                href={`https://wa.me/${CONTACT_INFO.whatsapp.replace(/[^0-9]/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="outline" className="w-full justify-start gap-3" size="lg">
+                  <MessageCircle className="h-5 w-5 text-emerald-600" />
+                  {isArabic ? "تواصل عبر واتساب" : "Chat on WhatsApp"}
+                </Button>
+              </a>
+              <a href={`tel:${CONTACT_INFO.phone}`}>
+                <Button variant="outline" className="w-full justify-start gap-3" size="lg">
+                  <Phone className="h-5 w-5 text-primary" />
+                  {isArabic ? "اتصل الآن" : "Call Now"}
+                </Button>
+              </a>
             </motion.div>
           </div>
         </Container>
