@@ -158,7 +158,7 @@ export function Header({ locale, dictionary }: HeaderProps) {
                     isAr ? "font-bold" : "font-medium"
                   )}
                 >
-                    {t("الحصان الأبيض", "White Horse")}
+                    {t("ديمو موقع بيع السيارات", "Demo of Car Selling Website")}
                 </span>
               </span>
             </Link>
@@ -321,7 +321,7 @@ export function Header({ locale, dictionary }: HeaderProps) {
                        isAr ? "font-bold" : "font-medium"
                      )}
                    >
-                  {t("الحصان الأبيض", "White Horse")}
+                  {t("ديمو موقع بيع السيارات", "Demo of Car Selling Website")}
                   </span>
                  <Button
                    variant="ghost"

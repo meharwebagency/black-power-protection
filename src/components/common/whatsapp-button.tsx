@@ -61,7 +61,7 @@ export function WhatsAppButton({ locale }: WhatsAppButtonProps) {
               <div className="flex items-center gap-3">
                 <div className="min-w-0">
                   <p className="text-body-sm font-bold text-white">
-                    {locale === "ar" ? "الحصان الأبيض" : "White Horse"}
+                    {locale === "ar" ? "ديمو موقع بيع السيارات" : "Demo of Car Selling Website"}
                   </p>
                   <p className="text-2xs text-white/80">
                     {locale === "ar" ? "عادةً يرد خلال دقائق" : "Usually replies within minutes"}

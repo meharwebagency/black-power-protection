@@ -1,4 +1,4 @@
-# BPP Car Marketplace — Complete Backend Architecture
+# Demo of Car Selling Website — Complete Backend Architecture
 
 ## Table of Contents
 1. [Design Principles](#1-design-principles)
@@ -308,8 +308,8 @@ updated_by    UUID        FK → profiles.id
 
 **Why JSONB value:**
 - Flexible: strings, numbers, booleans, arrays, objects.
-- `site_name` → `"BLACK POWER PROTECTION"` (string)
-- `contact_phone` → `"+965XXXXXXX"` (string)
+- `site_name` → `"Demo of Car Selling Website"` (string)
+- `contact_phone` → `"+92XXXXXXXXXX"` (string)
 - `social_links` → `{"instagram": "...", "twitter": "..."}` (object)
 - `business_hours` → `[{"day": "Sunday", "open": "9:00"}]` (array)
 - `hero_slides` → `[{...}, {...}]` (array of objects)

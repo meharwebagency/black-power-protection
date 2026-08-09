@@ -89,7 +89,7 @@ export default function LoginPage({ params }: LoginPageProps) {
         <div className="mb-8 text-center">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 p-2">
             <span className="font-display text-lg font-medium text-primary">
-              WH
+              D
             </span>
           </div>
           <h1 className="font-display text-display-xs font-bold text-foreground">
@@ -123,7 +123,7 @@ export default function LoginPage({ params }: LoginPageProps) {
               </label>
               <Input
                 type="email"
-                placeholder={isArabic ? "admin@bpp.com" : "admin@bpp.com"}
+                placeholder={isArabic ? "admin@example.com" : "admin@example.com"}
                 icon={<Mail className="h-4 w-4" />}
                 error={!!errors.email}
                 {...register("email")}
@@ -184,8 +184,8 @@ export default function LoginPage({ params }: LoginPageProps) {
         {/* Footer */}
         <p className="mt-6 text-center text-body-xs text-muted-foreground">
           {isArabic
-            ? "الحصان الأبيض © 2025"
-            : "White Horse © 2025"}
+            ? "ديمو موقع بيع السيارات © 2025"
+            : "Demo of Car Selling Website © 2025"}
         </p>
       </motion.div>
     </div>

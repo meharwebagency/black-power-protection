@@ -1,8 +1,8 @@
 import type { AppConfig, NavLink } from "@/types";
 
 export const APP_CONFIG: AppConfig = {
-  name: "White Horse",
-  nameAr: "الحصان الأبيض",
+  name: "Demo of Car Selling Website",
+  nameAr: "ديمو موقع بيع السيارات",
   defaultLocale: "ar",
   locales: ["ar", "en"],
   description: "Premium Luxury Car Marketplace in Kuwait",
@@ -114,12 +114,12 @@ export const CURRENCY = {
 };
 
 export const CONTACT_INFO = {
-  phone: "+96566466100",
-  phoneFormatted: "+965 6646 6100",
-  email: "info@whitehorse-kuwait.com",
+  phone: "+923067578890",
+  phoneFormatted: "+92 306 757 8890",
+  email: "meharwebagency@gmail.com",
   workingHours: "Sun - Thu: 9:00 AM - 6:00 PM",
   workingHoursAr: "الأحد - الخميس: 9:00 صباحاً - 6:00 مساءً",
-  whatsapp: "+96566466100",
+  whatsapp: "+923067578890",
 };
 
 export const SOCIAL_LINKS = {
@@ -132,19 +132,19 @@ export const LOGO_URL = "";
 
 export const META_DEFAULTS = {
   title: {
-    ar: "الحصان الأبيض | سوق السيارات الفاخرة في الكويت",
-    en: "White Horse | Premium Luxury Car Marketplace in Kuwait",
+    ar: "ديمو موقع بيع السيارات | سوق السيارات الفاخرة في الكويت",
+    en: "Demo of Car Selling Website | Premium Luxury Car Marketplace in Kuwait",
   },
   description: {
-    ar: "اكتشف أفضل السيارات الفاخرة في الكويت. سوق السيارات المميز من الحصان الأبيض.",
-    en: "Discover the finest luxury and premium cars in Kuwait. A distinguished car market from White Horse.",
+    ar: "اكتشف أفضل السيارات الفاخرة في الكويت. سوق السيارات المميز من ديمو موقع بيع السيارات.",
+    en: "Discover the finest luxury and premium cars in Kuwait. A distinguished car market from Demo of Car Selling Website.",
   },
   keywords: {
     ar: [
       "سيارات فاخرة",
       "سيارات مستعملة",
       "الكويت",
-      "الحصان الأبيض",
+      "ديمو موقع بيع السيارات",
       "سيارات مرسيديس",
       "سيارات بي ام دبليو",
     ],
@@ -152,7 +152,7 @@ export const META_DEFAULTS = {
       "luxury cars",
       "used cars",
       "Kuwait",
-      "White Horse",
+      "Demo of Car Selling Website",
       "Mercedes",
       "BMW",
     ],

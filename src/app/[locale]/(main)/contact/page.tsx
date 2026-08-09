@@ -294,7 +294,7 @@ export default function ContactPage({ params }: ContactPageProps) {
                         type="tel"
                         value={formState.phone}
                         onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                        placeholder="+965 XXXX XXXX"
+                        placeholder="+92 XXX XXX XXXX"
                       />
                     </div>
                     <div className="space-y-2">

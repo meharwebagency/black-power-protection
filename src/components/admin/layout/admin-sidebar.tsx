@@ -123,7 +123,7 @@ export function AdminSidebar({
           >
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl gold-gradient">
               <span className="font-display text-sm font-medium text-white">
-                WH
+                D
               </span>
             </div>
             <div className={cn("min-w-0", isCollapsed && "lg:hidden")}>
@@ -131,7 +131,7 @@ export function AdminSidebar({
                 "truncate font-display text-sm text-foreground",
                 isArabic ? "font-bold" : "font-medium"
               )}>
-                {isArabic ? "الحصان الأبيض" : "White Horse"}
+                {isArabic ? "ديمو موقع بيع السيارات" : "Demo of Car Selling Website"}
               </p>
               <p className="truncate text-body-xs text-muted-foreground">
                 {isArabic ? "لوحة التحكم" : "Admin Panel"}

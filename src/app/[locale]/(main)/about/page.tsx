@@ -107,7 +107,7 @@ export default function AboutPage({ params }: AboutPageProps) {
                 isArabic ? "font-bold" : "font-medium"
               )}
             >
-              {isArabic ? "الحصان الأبيض" : "White Horse"}
+              {isArabic ? "ديمو موقع بيع السيارات" : "Demo of Car Selling Website"}
             </motion.h1>
 
             <motion.p
@@ -149,8 +149,8 @@ export default function AboutPage({ params }: AboutPageProps) {
               </h2>
               <p className="mt-4 text-body-md leading-relaxed text-muted-foreground">
                 {isArabic
-                  ? "تأسست الحصان الأبيض لتكون الوجهة الأولى لعشاق السيارات الفاخرة في الكويت. نؤمن بأن كل عميل يستحق أفضل تجربة عند البحث عن سيارته المثالية."
-                  : "White Horse was founded to be the premier destination for luxury car enthusiasts in Kuwait. We believe every client deserves the best experience when searching for their perfect vehicle."}
+                  ? "تأسس ديمو موقع بيع السيارات ليكون الوجهة الأولى لعشاق السيارات الفاخرة في الكويت. نؤمن بأن كل عميل يستحق أفضل تجربة عند البحث عن سيارته المثالية."
+                  : "Demo of Car Selling Website was founded to be the premier destination for luxury car enthusiasts in Kuwait. We believe every client deserves the best experience when searching for their perfect vehicle."}
               </p>
               <p className="mt-4 text-body-md leading-relaxed text-muted-foreground">
                 {isArabic
@@ -167,7 +167,7 @@ export default function AboutPage({ params }: AboutPageProps) {
                   "relative font-display text-display-sm md:text-display-md text-foreground",
                   isArabic ? "font-bold" : "font-medium"
                 )}>
-                  {isArabic ? "الحصان الأبيض" : "White Horse"}
+                  {isArabic ? "ديمو موقع بيع السيارات" : "Demo of Car Selling Website"}
                 </span>
               </div>
             </motion.div>

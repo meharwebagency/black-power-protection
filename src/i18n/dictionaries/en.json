@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "White Horse",
+    "appName": "Demo of Car Selling Website",
     "home": "Home",
     "vehicles": "Vehicles",
     "about": "About",
@@ -94,15 +94,15 @@
   },
   "about": {
     "title": "About Us",
-    "subtitle": "About White Horse",
+    "subtitle": "About Demo of Car Selling Website",
     "description": "We offer the finest luxury cars in Kuwait with world-class standards",
     "hero": {
-      "title": "White Horse",
+      "title": "Demo of Car Selling Website",
       "subtitle": "Experts in Kuwait's Luxury Car Market"
     },
     "story": {
       "title": "Our Story",
-      "paragraph1": "White Horse was founded to be the premier destination for luxury car enthusiasts in Kuwait. We believe every client deserves the best experience when searching for their perfect vehicle.",
+      "paragraph1": "Demo of Car Selling Website was founded to be the premier destination for luxury car enthusiasts in Kuwait. We believe every client deserves the best experience when searching for their perfect vehicle.",
       "paragraph2": "With over 10 years of experience in the luxury car market, we offer an exclusive collection of the world's finest brands with guaranteed quality and complete transparency in all our dealings."
     },
     "mission": {
@@ -179,11 +179,11 @@
   },
   "seo": {
     "home": {
-      "title": "White Horse | Premium Luxury Car Marketplace in Kuwait",
-      "description": "Discover the finest luxury and premium cars in Kuwait. A distinguished car market from White Horse."
+      "title": "Demo of Car Selling Website | Premium Luxury Car Marketplace in Kuwait",
+      "description": "Discover the finest luxury and premium cars in Kuwait. A distinguished car market from Demo of Car Selling Website."
     },
     "vehicles": {
-      "title": "Vehicles | White Horse",
+      "title": "Vehicles | Demo of Car Selling Website",
       "description": "Browse our exclusive collection of luxury vehicles in Kuwait. Mercedes, BMW, Audi and more."
     }
   },

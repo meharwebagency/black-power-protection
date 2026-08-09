@@ -3,34 +3,34 @@ import "@/styles/globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "White Horse | Premium Luxury Car Marketplace in Kuwait",
-    template: "%s | White Horse",
+    default: "Demo of Car Selling Website | Premium Luxury Car Marketplace in Kuwait",
+    template: "%s | Demo of Car Selling Website",
   },
   description:
-    "Discover the finest luxury and premium cars in Kuwait. A distinguished car market from White Horse.",
-  keywords: ["luxury cars", "used cars", "Kuwait", "White Horse", "premium vehicles", "سيارات فاخرة", "كويت"],
-  authors: [{ name: "White Horse" }],
-  creator: "White Horse",
+    "Discover the finest luxury and premium cars in Kuwait. A distinguished car market from Demo of Car Selling Website.",
+  keywords: ["luxury cars", "used cars", "Kuwait", "Demo of Car Selling Website", "premium vehicles", "سيارات فاخرة", "كويت"],
+  authors: [{ name: "Demo of Car Selling Website" }],
+  creator: "Demo of Car Selling Website",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
   openGraph: {
     type: "website",
     locale: "ar_KW",
     alternateLocale: "en_US",
-    siteName: "White Horse",
-    title: "White Horse | Premium Luxury Car Marketplace in Kuwait",
+    siteName: "Demo of Car Selling Website",
+    title: "Demo of Car Selling Website | Premium Luxury Car Marketplace in Kuwait",
     description: "Discover the finest luxury and premium cars in Kuwait.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "White Horse - Luxury Cars Kuwait",
+        alt: "Demo of Car Selling Website - Luxury Cars Kuwait",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "White Horse | Premium Luxury Car Marketplace in Kuwait",
+    title: "Demo of Car Selling Website | Premium Luxury Car Marketplace in Kuwait",
     description: "Discover the finest luxury and premium cars in Kuwait.",
     images: ["/og-image.jpg"],
   },

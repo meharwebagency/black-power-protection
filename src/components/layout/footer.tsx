@@ -52,7 +52,7 @@ export function Footer({ locale, dictionary }: FooterProps) {
                     "font-display text-xl text-foreground transition-colors group-hover:text-primary",
                     locale === "ar" ? "font-bold" : "font-medium"
                   )}>
-                    {locale === "ar" ? "الحصان الأبيض" : "White Horse"}
+                    {locale === "ar" ? "ديمو موقع بيع السيارات" : "Demo of Car Selling Website"}
                   </span>
                 </div>
               </div>

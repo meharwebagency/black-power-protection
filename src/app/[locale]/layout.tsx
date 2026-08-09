@@ -57,11 +57,12 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "AutoDealer",
-              name: "White Horse",
-              alternateName: "الحصان الأبيض",
+              name: "Demo of Car Selling Website",
+              alternateName: "ديمو موقع بيع السيارات",
               description: "Premium luxury car marketplace in Kuwait",
               url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
-              telephone: "+96566466100",
+              telephone: "+923067578890",
+              email: "meharwebagency@gmail.com",
               sameAs: [],
               openingHoursSpecification: {
                 "@type": "OpeningHoursSpecification",

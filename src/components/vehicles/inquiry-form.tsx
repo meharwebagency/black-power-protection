@@ -163,7 +163,7 @@ export function InquiryForm({ vehicle, locale }: InquiryFormProps) {
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              placeholder="+965 XXXX XXXX"
+                  placeholder="+92 XXX XXX XXXX"
               className="ps-10"
               required
             />
